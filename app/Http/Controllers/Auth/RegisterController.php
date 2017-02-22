@@ -123,7 +123,7 @@ class RegisterController extends Controller
             'state' => 'required|string|max:255',
             'zip' => 'required|numeric',
             'email' => 'required|email|max:255|unique:users',
-            'password' => array('required','min:6'),
+            'password' => array('required','min:6','confirmed','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'),
         ]);
     }
     /**

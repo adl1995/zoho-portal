@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Zoho Portal
+
+A Google App Engine web application built on top of Laravel v5.4 that runs with Google Cloud SQL (MySQL). The user provides their Zoho CRM API Key and can list all their modules. They may then map those fields to the Google SQL database. The API will download and sync the data to the Google SQL database as well as the ID from Zoho and the last modified time from Zoho. On the main dashboard the user can view number of synced contacts and the last sync date, percentage of list with verified emails (pie chart), percentage of list with activity. The data is synced every 24 hours through a cron job.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:

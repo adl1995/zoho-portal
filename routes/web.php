@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/account/verify', 'Auth\RegisterController@verifyAccount')->name('verify');
 Route::resource('home', 'HomeController');
 
+
 // Route::get('/home', 'HomeController@index');

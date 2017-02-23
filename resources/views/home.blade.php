@@ -20,12 +20,12 @@
                     </span>
 
                 @else
-                    <form action="{{ route('login') }}" method="post" accept-charset="utf-8">
+                    <form action="{{ route('home.store') }}" method="POST" accept-charset="utf-8">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="api_key" class="form-group col-md-4 control-label">Zoho CRM API Key</label>
+                            <label for="zoho_key" class="form-group col-md-4 control-label">Zoho CRM API Key</label>
                             <div class="col-md-6">
-                                <input id="api_key" type="text" class="form-control" name="api_key" value="{{ old('api_key') }}">
+                                <input id="zoho_key" type="text" class="form-control" name="zoho_key" value="{{ old('zoho_key') }}">
                             </div>
                             <div class="text-center">
                                 <div class="col-md-6 col-md-offset-4">

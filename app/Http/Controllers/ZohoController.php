@@ -23,6 +23,5 @@ class ZohoController extends Controller
      */
     public function index(Request $request)
     {
-    	return $request->api_key;
     }
 }

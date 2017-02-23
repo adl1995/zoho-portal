@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the keys for a user.
+     */
+    public function keys()
+    {
+        return $this->hasMany('App\ZohoKey');
+    }
 }

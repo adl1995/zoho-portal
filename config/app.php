@@ -13,7 +13,7 @@ return [
     */
 
     'name' => 'Zoho Portal',
-
+   
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -176,6 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
 
     ],
 

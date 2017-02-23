@@ -25,7 +25,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'state' => $faker->state,
         'zip' => '1234',
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'verify_key' => 'asd213321',
+        'password' => $password ?: $password = bcrypt('123456'),
         'remember_token' => str_random(10),
     ];
 });

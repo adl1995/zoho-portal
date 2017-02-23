@@ -40,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['verifyAccount']]);
     }
 
     /**
@@ -103,7 +103,7 @@ class RegisterController extends Controller
             'WI'=>'Wisconsin',
             'WY'=>'Wyoming', 
         );
-        // $users = factory(\App\User::class, 1000)->create();
+        // $users = factory(\App\User::class, 10)->create();
         return view('auth.register', compact('states'));
     }
 
@@ -126,6 +126,7 @@ class RegisterController extends Controller
             'password' => array('required','min:6','confirmed','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'),
         ]);
     }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -165,7 +166,7 @@ class RegisterController extends Controller
      * @param
      * @return
      */
-    protected function verifyAccount()
+    public function verifyAccount()
     {
         $user = User::where('verify_key', Input::get('verificationkey'))->first();
         $user->is_verified = true;

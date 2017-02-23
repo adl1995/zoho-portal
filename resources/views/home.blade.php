@@ -20,11 +20,20 @@
                     </span>
 
                 @else
-                    <label for="api_key" class="col-md-4 control-label">Zoho CRM API Key</label>
                     <form action="{{ route('login') }}" method="post" accept-charset="utf-8">
                         {{ csrf_field() }}
-                        <div class="col-md-6">
-                            <input id="api_key" type="text" class="form-control" name="api_key" value="{{ old('api_key') }}">
+                        <div class="form-group">
+                            <label for="api_key" class="form-group col-md-4 control-label">Zoho CRM API Key</label>
+                            <div class="col-md-6">
+                                <input id="api_key" type="text" class="form-control" name="api_key" value="{{ old('api_key') }}">
+                            </div>
+                            <div class="text-center">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 @endif

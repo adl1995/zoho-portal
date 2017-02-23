@@ -151,10 +151,12 @@ class RegisterController extends Controller
         ]);
 
         if ($user) {
-            // Mail::send('emails.invite', ['verify_key' => $user->verify_key, 'user' => $user], function ($m) use ($user, $request) {
-            //     $m->from('mail@zoho.net', 'Zoho');
-            //     $m->to($request->email, $user->first_name)->subject('Zoho Portal - Verfiy your account');
-            // });
+            $user = Auth::user();
+            // @todo fix Mail: verify url
+            Mail::send('emails.verify', ['verify_key' => $user->verify_key, 'user' => $user], function ($m) use ($user, $request) {
+                $m->from('mail@zoho.net', 'Zoho');
+                $m->to($user->email, $user->first_name)->subject('Zoho Portal - Verfiy your account');
+            });
             Session::flash('status', 'Email sent! Please verify your account');
         }
 

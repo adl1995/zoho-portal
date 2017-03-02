@@ -13,6 +13,14 @@ return [
     */
 
     'name' => 'Zoho Portal',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Zoho key
+    |--------------------------------------------------------------------------
+    */
+
+    'ZOHO_KEY' => 'c023f658dae297057a72b1886bc36f19',
    
     /*
     |--------------------------------------------------------------------------
@@ -177,7 +185,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
-
+        // Wabel\Zoho\CRM\ZohoClient::class,
     ],
 
     /*

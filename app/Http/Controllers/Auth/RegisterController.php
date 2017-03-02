@@ -159,7 +159,6 @@ class RegisterController extends Controller
             });
             Session::flash('status', 'Email sent! Please verify your account');
         }
-
         return $user;
     }
     /**

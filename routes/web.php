@@ -23,6 +23,6 @@ Route::get('/zoho/modules', 'ZohoController@list');
 Route::get('/zoho/{module_id}/field', 'ZohoController@listFields');
 
 
-Route::get('/test/zoho', 'ZohoController@create');
+Route::get('/test/zoho', 'ZohoController@index');
 
 // Route::get('/home', 'HomeController@index');

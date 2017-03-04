@@ -185,7 +185,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
-        // Wabel\Zoho\CRM\ZohoClient::class,
     ],
 
     /*

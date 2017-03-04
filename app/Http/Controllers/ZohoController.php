@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-// use Wabel\Zoho\CRM\ZohoClient;
+use Wabel\Zoho\CRM\ZohoClient;
 use Illuminate\Http\Request;
 use Config;
 
 class ZohoController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Create a new controller instance
      *
      * @return void
      */
@@ -25,8 +25,10 @@ class ZohoController extends Controller
      */
     public function index(Request $request)
     {
+        $zohoClient = new ZohoClient(config('ZOHO_KEY'));
+
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/xml/Leads/getMyRecords?newFormat=1&authtoken='. Config::get('app.ZOHO_KEY') .'&scope=crmapi');
+        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/xml/Leads/getMyRecords?newFormat=1&authtoken='. config('app.ZOHO_KEY') .'&scope=crmapi');
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, '10');
@@ -68,7 +70,7 @@ class ZohoController extends Controller
     }
 
     /**
-     * Update Zoho client
+     * Update the Zoho client
      *
      * @return \Illuminate\Http\Response
      */
@@ -84,7 +86,7 @@ class ZohoController extends Controller
 
 
     /**
-     * Create a new Zoho client
+     * Remove a Zoho client
      *
      * @return \Illuminate\Http\Response
      */

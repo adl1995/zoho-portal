@@ -7,4 +7,4 @@
 Homestead.json
 Homestead.yaml
 .env
-google-cloud-sdk-146.0.0-linux-x86_64.tar.gz
+./google-cloud-sdk-146.0.0-linux-x86_64.tar.gz

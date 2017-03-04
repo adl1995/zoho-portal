@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Wabel\Zoho\CRM\ZohoClient;
+use Wabel\Zoho\CRM\AbstractZohoDao;
 use Illuminate\Http\Request;
 use Config;
 
@@ -13,9 +14,30 @@ class ZohoController extends Controller
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * Call the Zoho CRM API 
+     * @param : $type, $method
+     * @return void
+     */
+    
+    public function call_api($type, $method)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/json/'.$type.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi');
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
+
+        $content = curl_exec($ch);
+        curl_close($ch);
+
+        return $content;
     }
 
     /**
@@ -25,18 +47,7 @@ class ZohoController extends Controller
      */
     public function index(Request $request)
     {
-        $zohoClient = new ZohoClient(config('ZOHO_KEY'));
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/xml/Leads/getMyRecords?newFormat=1&authtoken='. config('app.ZOHO_KEY') .'&scope=crmapi');
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, '10');
-
-        $content = curl_exec($ch);
-        curl_close($ch);
-
-        return $content;
+        return $this->call_api('Info', 'getModules');
     }
 
     /**

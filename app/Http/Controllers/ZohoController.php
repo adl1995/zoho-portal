@@ -41,13 +41,21 @@ class ZohoController extends Controller
     }
 
     /**
-     * Get the API key from user
+     * Get list of all modules
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        return $this->call_api('Info', 'getModules');
+        $response = $this->call_api('Info', 'getModules');
+        $response = json_decode($response, TRUE);
+        if (isset($response['response']['result']['row'])) {
+            $rows = $response['response']['result']['row'];
+            return view('zoho.home', compact('rows'));
+        }
+        else {
+            // @todo: show error message
+        }
     }
 
     /**

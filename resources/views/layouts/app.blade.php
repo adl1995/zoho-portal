@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/table.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -79,6 +80,14 @@
         </nav>
 
         @yield('content')
+
+        <div class="container">
+            <footer class="footer">
+                <div class="container">
+                    Zoho - all rights reserved
+                </div>
+            </footer>
+        </div>
     </div>
 
     <!-- Scripts -->

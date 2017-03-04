@@ -37,18 +37,18 @@ class ZohoController extends Controller
         $content = curl_exec($ch);
         curl_close($ch);
 
-        return $content;
+        return json_decode($content, TRUE);
     }
 
     /**
-     * Get list of all modules
+     * Get list all modules
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         $response = $this->call_api('Info', 'getModules');
-        $response = json_decode($response, TRUE);
+        
         if (isset($response['response']['result']['row'])) {
             $rows = $response['response']['result']['row'];
             return view('zoho.home', compact('rows'));
@@ -59,18 +59,16 @@ class ZohoController extends Controller
     }
 
     /**
-     * List all modules Zoho
-     *
+     * List all fields in a module
+     * @param : $[name] [<description>]
      * @return \Illuminate\Http\Response
+     * // @todo: add slug
      */
-    public function list(Request $request)
+    public function fields(Request $request)
     {
-        $zoho = new Zoho\CRM\Client(config('app.ZOHO_KEY'));
-        return $zoho;
-        // Use its supported modules to make easy requests...
-        $one_lead = $zoho->leads->getById('1212717324723478324');
-        $many_leads = $zoho->leads->getByIds(['8734873457834574028', '3274736297894375750']);
-        $admins = $zoho->users->getAdmins();
+        $response = $this->call_api('Tasks', 'getFields');
+        $rows = $response['Tasks']['section'];
+        return view('zoho.modules.index', compact('rows'));
     }
 
     /**

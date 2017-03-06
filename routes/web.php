@@ -22,3 +22,4 @@ Route::resource('home', 'HomeController');
 Route::get('/zoho', 'ZohoController@index');
 Route::get('/zoho/{module}/fields', 'ZohoController@fields');
 Route::get('/zoho/fields/values', 'ZohoController@fieldValues');
+Route::get('/zoho/records', 'ZohoController@records');

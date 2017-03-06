@@ -91,8 +91,18 @@ class ZohoController extends Controller
         $content = curl_exec($ch);
         return $content;
         curl_close($ch);
+    }
 
-        return json_decode($content, TRUE);            
+    /**
+     * Get records
+     * @param : $[name] [<description>]
+     * @return \Illuminate\Http\Response
+     * // @todo: add slug
+     */
+    public function records()
+    {
+        $response = $this->call_api('Accounts', 'getRecords');
+        return $response;
     }
 
     /**

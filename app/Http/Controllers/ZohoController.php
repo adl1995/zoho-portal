@@ -6,6 +6,7 @@ use Wabel\Zoho\CRM\ZohoClient;
 use Wabel\Zoho\CRM\AbstractZohoDao;
 use Illuminate\Http\Request;
 use Config;
+use Google;
 
 class ZohoController extends Controller
 {
@@ -111,19 +112,14 @@ class ZohoController extends Controller
      * @return \Illuminate\Http\Response
      * // @todo: receive values through form
      */
-    public function mapper()
+    public function map(Request $request)
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://crm.zoho.com/crm/private/xml/Leads/getSearchRecordsByPDC?authtoken=". config('app.ZOHO_KEY') ."&scope=crmapi");
+        dd($googleClient = Google::getClient());
+        $client = new PulkitJalan\Google\Client(config('google'));
+        $googleClient = $client->getClient();
+        $client = new Google_Client();
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
-
-        $content = curl_exec($ch);
-        return $content;
-        curl_close($ch);
-
-        return json_decode($content, TRUE);            
+        return $request->all();
     }
 
     /**

@@ -21,6 +21,14 @@ return [
     */
 
     'ZOHO_KEY' => '7a840c9f1afa451dddd5a91556f92f4c',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google SQL key
+    |--------------------------------------------------------------------------
+    */
+
+    'GOOGLE_API_KEY' => 'AIzaSyD8oi7ip71Hw5x8u-zGbBzUTpxyWXT6n64',
    
     /*
     |--------------------------------------------------------------------------
@@ -185,6 +193,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
+        PulkitJalan\Google\GoogleServiceProvider::class,
     ],
 
     /*
@@ -233,7 +242,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Google' => PulkitJalan\Google\Facades\Google::class
     ],
 
 ];

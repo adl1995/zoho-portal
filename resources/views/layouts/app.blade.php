@@ -81,6 +81,9 @@
 
         @yield('content')
 
+    </div>
+
+    <!-- Scripts -->
         <div class="container">
             <footer class="footer">
                 <div class="container">
@@ -88,9 +91,6 @@
                 </div>
             </footer>
         </div>
-    </div>
-
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

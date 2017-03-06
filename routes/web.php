@@ -20,5 +20,5 @@ Auth::routes();
 Route::get('/account/verify', 'Auth\RegisterController@verifyAccount')->name('verify');
 Route::resource('home', 'HomeController');
 Route::get('/zoho', 'ZohoController@index');
-Route::get('/zoho/fields', 'ZohoController@fields');
-// Route::get('/zoho/{module}/fields', 'ZohoController@fields');
+Route::get('/zoho/{module}/fields', 'ZohoController@fields');
+Route::get('/zoho/fields/values', 'ZohoController@fieldValues');

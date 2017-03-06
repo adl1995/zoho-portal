@@ -48,7 +48,7 @@
             <div class="col-md-3">
                 <div class="cell">
                     <div class="description">
-                        {{ $row['content'] }}
+                    <a href="/zoho/{{ $row['content'] }}/fields">{{ $row['content'] }}</a>
                     </div>
                 </div>
             </div>

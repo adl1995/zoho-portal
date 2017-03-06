@@ -62,13 +62,58 @@ class ZohoController extends Controller
      * List all fields in a module
      * @param : $[name] [<description>]
      * @return \Illuminate\Http\Response
+     */
+    public function fields($module)
+    {
+        $response = $this->call_api($module, 'getFields');
+        if (isset($response[$module]['section'])) {
+            $rows = $response[$module]['section'][0]['FL'];
+            return view('zoho.modules.fields', compact('rows', 'module'));
+        }
+        else
+            return 'No fields found';            
+    }
+
+    /**
+     * List all values belonging to a field
+     * @param : $[name] [<description>]
+     * @return \Illuminate\Http\Response
      * // @todo: add slug
      */
-    public function fields(Request $request)
+    public function fieldValues()
     {
-        $response = $this->call_api('Tasks', 'getFields');
-        $rows = $response['Tasks']['section'];
-        return view('zoho.modules.index', compact('rows'));
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://crm.zoho.com/crm/private/xml/Leads/getSearchRecordsByPDC?authtoken=". config('app.ZOHO_KEY') ."&scope=crmapi");
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
+
+        $content = curl_exec($ch);
+        return $content;
+        curl_close($ch);
+
+        return json_decode($content, TRUE);            
+    }
+
+    /**
+     * Map list of values to Google SQL
+     * @param : $[name] [<description>]
+     * @return \Illuminate\Http\Response
+     * // @todo: receive values through form
+     */
+    public function mapper()
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://crm.zoho.com/crm/private/xml/Leads/getSearchRecordsByPDC?authtoken=". config('app.ZOHO_KEY') ."&scope=crmapi");
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
+
+        $content = curl_exec($ch);
+        return $content;
+        curl_close($ch);
+
+        return json_decode($content, TRUE);            
     }
 
     /**

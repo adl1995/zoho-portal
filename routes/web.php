@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/account/verify', 'Auth\RegisterController@verifyAccount')->name('verify');
 Route::resource('home', 'HomeController');
 Route::get('/zoho', 'ZohoController@index');
+Route::get('/zoho/home', 'ZohoController@home');
+Route::get('/zoho/integrations', 'ZohoController@integrations');
 Route::get('/zoho/{module}/fields', 'ZohoController@fields');
 Route::get('/zoho/fields/values', 'ZohoController@fieldValues'); //TODO: add slug
 Route::get('/zoho/records', 'ZohoController@records');

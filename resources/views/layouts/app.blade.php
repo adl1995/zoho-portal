@@ -39,6 +39,9 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Zoho Portal') }}
                     </a>
+                    <a class="navbar-brand" href="{{ url('/zoho/integrations') }}">
+                        Integrations
+                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

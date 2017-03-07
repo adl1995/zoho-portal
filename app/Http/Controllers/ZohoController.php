@@ -60,6 +60,30 @@ class ZohoController extends Controller
     }
 
     /**
+     * Get the homepage
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function home(Request $request)
+    {
+        return view('zoho.dashboard');
+        $response = $this->call_api('Leads', 'getRecords');
+        $response = $this->call_api('Leads', 'getRecords');
+        $response = $this->call_api('Leads', 'getRecords');
+        return $response;
+    }
+
+    /**
+     * Integrations through email verification
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function integrations()
+    {
+        
+    }
+
+    /**
      * List all fields in a module
      * @param : $[name] [<description>]
      * @return \Illuminate\Http\Response

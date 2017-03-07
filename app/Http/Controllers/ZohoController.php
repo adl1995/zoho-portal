@@ -84,6 +84,24 @@ class ZohoController extends Controller
     }
 
     /**
+     * Verify an e-mail
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function verify()
+    {
+        $url = 'https://emailverifierapi.com/v2/?apiKey='.config('app.EMAIL_VERIFIER').'&email='.urlencode('test@hotmail.com');
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15); 
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15); 
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        return $response;
+    }
+
+    /**
      * List all fields in a module
      * @param : $[name] [<description>]
      * @return \Illuminate\Http\Response

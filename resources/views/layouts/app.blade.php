@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/jquery-3.1.1.js') }}"></script>
     <style type="text/css" media="screen">
      /**
      * Footer Styles

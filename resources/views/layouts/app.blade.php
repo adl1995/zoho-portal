@@ -13,7 +13,21 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+    <style type="text/css" media="screen">
+     /**
+     * Footer Styles
+     */
 
+    .footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 1rem;
+      background-color: #efefef;
+      text-align: center;
+    }   
+    </style>
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -38,6 +52,9 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Zoho Portal') }}
+                    </a>
+                    <a class="navbar-brand" href="#">
+                        |
                     </a>
                     <a class="navbar-brand" href="{{ url('/zoho/integrations') }}">
                         Integrations
@@ -86,14 +103,8 @@
 
     </div>
 
+    <div class="footer">Zoho Portal - 2017</div>    
     <!-- Scripts -->
-        <div class="container">
-            <footer class="footer">
-                <div class="container">
-                    Zoho - all rights reserved
-                </div>
-            </footer>
-        </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

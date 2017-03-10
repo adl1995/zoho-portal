@@ -61,6 +61,7 @@ class ZohoController extends Controller
         $content = curl_exec($ch);
         curl_close($ch);
 
+        dd($content);
         return json_decode($content, TRUE);
     }    
 
@@ -134,6 +135,8 @@ class ZohoController extends Controller
      */
     public function verify(Request $request)
     {
+        $record = $this->call_zoho_api('Contacts', 'getRecords');
+        $record_id = $record['response']['result']['Contacts']['row']['FL'][0]['content'];
         $user = Auth::user();
         $response = $this->call_email_api($user->email);
         if (isset($response)) {
@@ -144,22 +147,20 @@ class ZohoController extends Controller
                 $user->email_verified = 0;
                 if ($request->input('opt_out_fail')) {
                     $xml = "
-                    <Contacts>
-                        <row no="1">
-                        <FL val="Email Opt Out">checked</FL>
+                        <Contacts>
+                        <row no=\"1\">
+                        <FL val=\"Email Opt Out\">true</FL>
                         </row>
                         </Contacts>";
-                    $record_id = '2000000017024'; // retreive ID - how?
                     return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, $xml);
                 }
                 if ($request->input('add_note_fail')) {
                     $xml = "
                         <Contacts>
-                        <row no="1">
-                        <FL val="Description">This email failed validation</FL>
+                        <row no=\"1\">
+                        <FL val=\"Description\">This email failed validation</FL>
                         </row>
                         </Contacts>";
-                    $record_id = '2000000017024'; // retreive ID - how?
                     return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, $xml);
                 }
             }

@@ -46,7 +46,7 @@ class ZohoController extends Controller
 
     /**
      * Call the Zoho CRM API; for adding data
-     * @param : $module, $method
+     * @param : $module, $method, $record_id, $XML_data
      * @return response
      */
     
@@ -137,6 +137,7 @@ class ZohoController extends Controller
     {
         $record = $this->call_zoho_api('Contacts', 'getRecords');
         $record_id = $record['response']['result']['Contacts']['row']['FL'][0]['content'];
+        
         $user = Auth::user();
         $response = $this->call_email_api($user->email);
         if (isset($response)) {
@@ -145,6 +146,7 @@ class ZohoController extends Controller
             }
             elseif ($response['status'] == 'failed') {
                 $user->email_verified = 0;
+                // @todo: fix API call
                 if ($request->input('opt_out_fail')) {
                     $xml = "
                         <Contacts>
@@ -152,7 +154,7 @@ class ZohoController extends Controller
                         <FL val=\"Email Opt Out\">true</FL>
                         </row>
                         </Contacts>";
-                    return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, $xml);
+                    return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, htmlspecialchars($xml));
                 }
                 if ($request->input('add_note_fail')) {
                     $xml = "
@@ -161,12 +163,12 @@ class ZohoController extends Controller
                         <FL val=\"Description\">This email failed validation</FL>
                         </row>
                         </Contacts>";
-                    return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, $xml);
+                    return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, htmlspecialchars($xml));
                 }
             }
         }
         else {
-            // server connection failure
+            // @todo: redirect with notification
         }
         $user->save();
         return redirect()->action('ZohoController@index');

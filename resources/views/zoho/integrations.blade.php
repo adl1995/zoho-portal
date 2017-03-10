@@ -24,12 +24,13 @@
         <br/><br/>
 
         <form action="/verify" method="POST" accept-charset="utf-8">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="container">
             <div class="row">
-              <label class="col-md-12" id="checkbox-1">Opt-out failed emails <input type="checkbox"></label>
+              <label class="col-md-12" id="checkbox-1">Opt-out failed emails <input name="opt_out_fail" type="checkbox"></label>
             </div>
             <div class="row">
-              <label class="col-md-12" id="checkbox-2">Add note if email fails <input id="checkbox-2" type="checkbox"></label>
+              <label class="col-md-12" id="checkbox-2">Add note if email fails <input name="add_note_fail" type="checkbox"></label>
             </div>
             <input id="form-button" type="submit" class="btn btn-success" value="Verify">
           </div>

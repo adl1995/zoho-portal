@@ -114,6 +114,7 @@ class ZohoController extends Controller
      */
     public function verify(Request $request)
     {
+        return $request->all();
         $user = Auth::user();
         $response = $this->call_email_api($user->email);
         if (isset($response)) {

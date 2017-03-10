@@ -26,6 +26,6 @@ Route::get('/zoho/{module}/fields', 'ZohoController@fields');
 Route::get('/zoho/fields/values', 'ZohoController@fieldValues'); //TODO: add slug
 Route::get('/zoho/records', 'ZohoController@records');
 Route::post('/zoho/map', 'ZohoController@map');
-Route::get('/verify-email', 'ZohoController@verify');
+Route::post('/verify', 'ZohoController@verify');
 
 Route::get('/test/sql', 'ZohoController@map');

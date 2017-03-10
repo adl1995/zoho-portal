@@ -16,7 +16,7 @@
             </div>
 
             <form action="/zoho/map" method="POST" accept-charset="utf-8">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @foreach($rows as $key=>$row)		
                     <div class="row margin-0">
                         <div class="col-md-1">

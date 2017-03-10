@@ -25,15 +25,35 @@ class ZohoController extends Controller
     }
 
     /**
-     * Call the Zoho CRM API 
-     * @param : $type, $method
+     * Call the Zoho CRM API; for retreiving data
+     * @param : $module, $method
      * @return response
      */
     
-    public function call_zoho_api($type, $method)
+    public function call_zoho_api($module, $method)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/json/'.$type.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi');
+        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/json/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi');
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
+
+        $content = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($content, TRUE);
+    }
+
+    /**
+     * Call the Zoho CRM API; for adding data
+     * @param : $module, $method
+     * @return response
+     */
+    
+    public function call_zoho_api_add($module, $method, $record_id, $XML_data)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/xml/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi&newFormat=1&id='.$record_id.'&xmlData='.$XML_data);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, '50');
@@ -122,21 +142,26 @@ class ZohoController extends Controller
             }
             elseif ($response['status'] == 'failed') {
                 $user->email_verified = 0;
-                if ($request->input('opt_out_fail'))
+                if ($request->input('opt_out_fail')) {
                     $xml = "
                     <Contacts>
                         <row no="1">
                         <FL val="Email Opt Out">checked</FL>
                         </row>
                         </Contacts>";
-                if ($request->input('add_note_fail'))
+                    $record_id = '2000000017024'; // retreive ID - how?
+                    return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, $xml);
+                }
+                if ($request->input('add_note_fail')) {
                     $xml = "
                         <Contacts>
                         <row no="1">
                         <FL val="Description">This email failed validation</FL>
                         </row>
                         </Contacts>";
-                    
+                    $record_id = '2000000017024'; // retreive ID - how?
+                    return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, $xml);
+                }
             }
         }
         else {

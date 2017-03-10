@@ -99,7 +99,11 @@
                 </div>
             </div>
         </nav>
-
+        @if (isset($error))
+            <div class="text-center">
+                <h1>{{ $error }}</h1>
+            </div>
+        @endif
         @yield('content')
 
     </div>

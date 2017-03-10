@@ -92,14 +92,14 @@ class ZohoController extends Controller
      */
     public function index(Request $request)
     {
-        $response = $this->call_zoho_api('Info', 'getModules');
+        $response = $this->call_zoho_api('Info', 'getasdModules');
         
         if (isset($response['response']['result']['row'])) {
             $rows = $response['response']['result']['row'];
             return view('zoho.home', compact('rows'));
         }
         else {
-            // @todo: show error message
+            return view('zoho.home')->with('error', 'Data not found / Server connection failure');
         }
     }
 

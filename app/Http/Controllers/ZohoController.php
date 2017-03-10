@@ -108,33 +108,11 @@ class ZohoController extends Controller
     }
 
     /**
-     * Show e-mail verification screen
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showVerify(Request $request)
-    {
-        $user = Auth::user();
-        $response = $this->call_email_api($user->email);
-        if (isset($response)) {
-            if ($response['status'] == 'passed') {
-                return view('');
-            }
-            elseif
-                ($response['status'] == 'failed') {
-            }
-        }
-        else {
-            // server connection failure
-        }
-    }
-
-    /**
      * Verify an e-mail
      *
      * @return \Illuminate\Http\Response
      */
-    public function verify()
+    public function verify(Request $request)
     {
         $user = Auth::user();
         $response = $this->call_email_api($user->email);

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Wabel\Zoho\CRM\ZohoClient;
 use Wabel\Zoho\CRM\AbstractZohoDao;
 use Illuminate\Http\Request;
+
+// loading facades
+use Auth;
 use Config;
 use Google;
 
@@ -24,7 +27,7 @@ class ZohoController extends Controller
     /**
      * Call the Zoho CRM API 
      * @param : $type, $method
-     * @return void
+     * @return response
      */
     
     public function call_zoho_api($type, $method)
@@ -109,11 +112,21 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function verify()
+    public function showVerify(Request $request)
     {
-        $response = $this->call_email_api('adeelas@hotasdasmail.com');
-        if ($response['status'] == 'passed')
-            return view('');
+        $user = Auth::user();
+        $response = $this->call_email_api($user->email);
+        if (isset($response)) {
+            if ($response['status'] == 'passed') {
+                return view('');
+            }
+            elseif
+                ($response['status'] == 'failed') {
+            }
+        }
+        else {
+            // server connection failure
+        }
     }
 
     /**
@@ -123,9 +136,20 @@ class ZohoController extends Controller
      */
     public function verify()
     {
-        $response = $this->call_email_api('adeelas@hotasdasmail.com');
-        if ($response['status'] == 'passed')
-            return view('');
+        $user = Auth::user();
+        $response = $this->call_email_api($user->email);
+        if (isset($response)) {
+            if ($response['status'] == 'passed') {
+                return $response;
+            }
+            elseif
+                ($response['status'] == 'failed') {
+                return $response;
+            }
+        }
+        else {
+            // server connection failure
+        }
     }
 
     /**

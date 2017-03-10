@@ -27,10 +27,30 @@ class ZohoController extends Controller
      * @return void
      */
     
-    public function call_api($type, $method)
+    public function call_zoho_api($type, $method)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/json/'.$type.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi');
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
+
+        $content = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($content, TRUE);
+    }    
+
+    /**
+     * Call the email verifier API 
+     * @param : $email
+     * @return response
+     */
+    
+    public function call_email_api($email)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://emailverifierapi.com/v2/?apiKey='.config('app.EMAIL_VERIFIER').'&email='.urlencode($email));
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, '50');
@@ -48,7 +68,7 @@ class ZohoController extends Controller
      */
     public function index(Request $request)
     {
-        $response = $this->call_api('Info', 'getModules');
+        $response = $this->call_zoho_api('Info', 'getModules');
         
         if (isset($response['response']['result']['row'])) {
             $rows = $response['response']['result']['row'];
@@ -66,10 +86,11 @@ class ZohoController extends Controller
      */
     public function home(Request $request)
     {
+        
         return view('zoho.dashboard');
-        $response = $this->call_api('Leads', 'getRecords');
-        $response = $this->call_api('Leads', 'getRecords');
-        $response = $this->call_api('Leads', 'getRecords');
+        $response = $this->call_zoho_api('Leads', 'getRecords');
+        $response = $this->call_zoho_api('Leads', 'getRecords');
+        $response = $this->call_zoho_api('Leads', 'getRecords');
         return $response;
     }
 
@@ -84,21 +105,27 @@ class ZohoController extends Controller
     }
 
     /**
+     * Show e-mail verification screen
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function verify()
+    {
+        $response = $this->call_email_api('adeelas@hotasdasmail.com');
+        if ($response['status'] == 'passed')
+            return view('');
+    }
+
+    /**
      * Verify an e-mail
      *
      * @return \Illuminate\Http\Response
      */
     public function verify()
     {
-        $url = 'https://emailverifierapi.com/v2/?apiKey='.config('app.EMAIL_VERIFIER').'&email='.urlencode('test@hotmail.com');
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15); 
-        curl_setopt($ch, CURLOPT_TIMEOUT, 15); 
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        return $response;
+        $response = $this->call_email_api('adeelas@hotasdasmail.com');
+        if ($response['status'] == 'passed')
+            return view('');
     }
 
     /**
@@ -108,7 +135,7 @@ class ZohoController extends Controller
      */
     public function fields($module)
     {
-        $response = $this->call_api($module, 'getFields');
+        $response = $this->call_zoho_api($module, 'getFields');
         if (isset($response[$module]['section'])) {
             $rows = $response[$module]['section'][0]['FL'];
             return view('zoho.modules.fields', compact('rows', 'module'));
@@ -144,7 +171,7 @@ class ZohoController extends Controller
      */
     public function records()
     {
-        $response = $this->call_api('Accounts', 'getRecords');
+        $response = $this->call_zoho_api('Accounts', 'getRecords');
         return $response;
     }
 

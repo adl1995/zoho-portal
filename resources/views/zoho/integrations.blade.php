@@ -15,7 +15,7 @@
     });	
 	</script>
     <h2 class="text-center">Email verification</h2>
-    <p class="text-center">verify you email through Email Verifier API</p>
+    <p class="text-center">verify your email through Email Verifier API</p>
 
     <div class="container">
 	    <div class="text-center">

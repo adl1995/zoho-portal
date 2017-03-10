@@ -114,21 +114,36 @@ class ZohoController extends Controller
      */
     public function verify(Request $request)
     {
-        return $request->all();
         $user = Auth::user();
         $response = $this->call_email_api($user->email);
         if (isset($response)) {
             if ($response['status'] == 'passed') {
-                return $response;
+                $user->email_verified = 1;
             }
-            elseif
-                ($response['status'] == 'failed') {
-                return $response;
+            elseif ($response['status'] == 'failed') {
+                $user->email_verified = 0;
+                if ($request->input('opt_out_fail'))
+                    $xml = "
+                    <Contacts>
+                        <row no="1">
+                        <FL val="Email Opt Out">checked</FL>
+                        </row>
+                        </Contacts>";
+                if ($request->input('add_note_fail'))
+                    $xml = "
+                        <Contacts>
+                        <row no="1">
+                        <FL val="Description">This email failed validation</FL>
+                        </row>
+                        </Contacts>";
+                    
             }
         }
         else {
             // server connection failure
         }
+        $user->save();
+        return redirect()->action('ZohoController@index');
     }
 
     /**
@@ -245,7 +260,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function module_fields(Request $request)
+    public function moduleFields(Request $request)
     {
         $zoho = new Zoho\CRM\Client('MY_ZOHO_AUTH_TOKEN');
 
@@ -254,7 +269,4 @@ class ZohoController extends Controller
         $many_leads = $zoho->leads->getByIds(['8734873457834574028', '3274736297894375750']);
         $admins = $zoho->users->getAdmins();
     }
-
-
-
 }

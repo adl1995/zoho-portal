@@ -14,7 +14,7 @@ class CreateModifyTableMigration extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            // $table->increments('id');
+            $table->boolean('email_verified')->default(0);
         });
     }
 

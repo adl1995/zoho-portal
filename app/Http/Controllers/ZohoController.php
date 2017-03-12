@@ -92,8 +92,7 @@ class ZohoController extends Controller
      */
     public function index(Request $request)
     {
-        $response = $this->call_zoho_api('Info', 'getasdModules');
-        
+        $response = $this->call_zoho_api('Info', 'getModules');
         if (isset($response['response']['result']['row'])) {
             $rows = $response['response']['result']['row'];
             return view('zoho.home', compact('rows'));
@@ -110,7 +109,6 @@ class ZohoController extends Controller
      */
     public function home(Request $request)
     {
-        
         return view('zoho.dashboard');
         $response = $this->call_zoho_api('Leads', 'getRecords');
         $response = $this->call_zoho_api('Leads', 'getRecords');
@@ -229,6 +227,11 @@ class ZohoController extends Controller
      */
     public function map(Request $request)
     {
+        foreach ($request->input('checkbox') as $key=>$box) {
+            if ($box == "1") {
+                return $request->input('label')[$key];
+            }
+        }
         dd($googleClient = Google::getClient());
         $client = new PulkitJalan\Google\Client(config('google'));
         $googleClient = $client->getClient();

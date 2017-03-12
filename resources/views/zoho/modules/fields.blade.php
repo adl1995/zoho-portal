@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="container">
 
         <h2 class="text-center">{{ $module }} - Google SQL Mapper</h2>
@@ -22,53 +23,51 @@
                         <div class="col-md-1">
                             <div class="cell">
                                 <div class="propertyname">
-                                    @if ($row['label'] == 'Email')
-                                        <input type="checkbox" disabled readonly checked="checked">
-                                    @else
-                                        <input type="checkbox">
-                                    @endif
+                                        <!-- <input type="checkbox" name="checkbox_{{ $row['label'] }}" disabled readonly checked="checked"> -->
+                                        <input id="checkbox" type="hidden" value="0" name="checkbox[{{$key}}]"/>
+                                        <input id="checkbox_hidden" type='checkbox' value='1' name="checkbox[{{$key}}]"/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="cell">
                                 <div class="propertyname">
-                                    <input name="label" value="{{ $row['label'] }}" placeholder="" readonly>
+                                    <input name="label[]" value="{{ $row['label'] }}" placeholder="" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="cell">
                                 <div class="type">
-                                    <input name="customfield" value="{{ $row['customfield'] }}" placeholder="" readonly>
+                                    <input name="customfield[]" value="{{ $row['customfield'] }}" placeholder="" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="cell">
                                 <div class="isrequired">
-                                    <input name="maxlength" value="{{ $row['maxlength'] }}" placeholder="" readonly>
+                                    <input name="maxlength[]" value="{{ $row['maxlength'] }}" placeholder="" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="cell">
                                 <div class="description">
-                                    <input name="isreadonly" value="{{ $row['isreadonly'] }}" placeholder="" readonly>
+                                    <input name="isreadonly[]" value="{{ $row['isreadonly'] }}" placeholder="" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="cell">
                                 <div class="description">
-                                    <input name="type" value="{{ $row['type'] }}" placeholder="" readonly>
+                                    <input name="type[]" value="{{ $row['type'] }}" placeholder="" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-1">
                             <div class="cell">
                                 <div class="description">
-                                    <span name="req" value="{{ $row['req'] }}">{{ $row['req'] }}</span>
+                                    <span name="req[]" value="{{ $row['req'] }}">{{ $row['req'] }}</span>
                                 </div>
                             </div>
                         </div>

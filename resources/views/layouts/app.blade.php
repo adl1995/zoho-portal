@@ -18,15 +18,10 @@
      /**
      * Footer Styles
      */
-
     .footer {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      padding: 1rem;
-      background-color: #efefef;
-      text-align: center;
+        padding: 1rem;
+        background-color: #efefef;
+        text-align: center;
     }   
     </style>
     <!-- Scripts -->
@@ -108,7 +103,8 @@
 
     </div>
 
-    <div class="footer">Zoho Portal - 2017</div>    
+    <br/><br/><br/>
+    <footer class="footer navbar-fixed-bottom"> Zoho Portal - 2017</footer>    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+@if(isset($rows))
     <div class="container">
-
         <h2 class="text-center">{{ $module }} - Google SQL Mapper</h2>
         <hr />
         <div class="container method">
@@ -15,7 +15,6 @@
                 <div class="col-md-2"><div class="header">Type</div></div>
                 <div class="col-md-1"><div class="header">Required</div></div>
             </div>
-
             <form action="/zoho/map" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @foreach($rows as $key=>$row)		
@@ -78,6 +77,7 @@
                     </div>
                 </div>
             </form>
+            @endif
         </div>
     </div>
 @endsection

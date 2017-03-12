@@ -185,7 +185,8 @@ class ZohoController extends Controller
             return view('zoho.modules.fields', compact('rows', 'module'));
         }
         else
-            return 'No fields found';            
+            return view('zoho.modules.fields')->with('error', 'No fields found');
+
     }
 
     /**

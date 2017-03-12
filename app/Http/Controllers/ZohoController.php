@@ -227,15 +227,23 @@ class ZohoController extends Controller
      */
     public function map(Request $request)
     {
-        foreach ($request->input('checkbox') as $key=>$box) {
-            if ($box == "1") {
-                return $request->input('label')[$key];
-            }
-        }
-        dd($googleClient = Google::getClient());
-        $client = new PulkitJalan\Google\Client(config('google'));
-        $googleClient = $client->getClient();
-        $client = new Google_Client();
+        
+        // foreach ($request->input('checkbox') as $key=>$box) {
+        //     if ($box == "1") {
+        //         return $request->input('label')[$key];
+        //     }
+        // }
+        // $googleClient = Google::getClient(config('google'));
+        // dd($googleClient);
+        // $client = new \PulkitJalan\Google\Client(config('google'));
+        $client = new \PulkitJalan\Google\Client(config('google'));
+
+        // returns instance of \Google_Service_Storage
+        $storage = $client->make('storage');
+        dd($storage);
+        // dd($client);
+        // $googleClient = $client->getClient();
+        // $client = new Google_Client();
 
         return $request->all();
     }

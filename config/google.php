@@ -33,7 +33,7 @@ return [
     | a Server key, and not a Browser key.
     |
     */
-    'developer_key' => 'AIzaSyD8oi7ip71Hw5x8u-zGbBzUTpxyWXT6n64',
+    'developer_key' => env('GOOGLE_API_KEY'),
 
     /*
     |----------------------------------------------------------------------------

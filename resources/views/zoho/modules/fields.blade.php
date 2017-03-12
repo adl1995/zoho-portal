@@ -23,7 +23,6 @@
                         <div class="col-md-1">
                             <div class="cell">
                                 <div class="propertyname">
-                                        <!-- <input type="checkbox" name="checkbox_{{ $row['label'] }}" disabled readonly checked="checked"> -->
                                         <input id="checkbox" type="hidden" value="0" name="checkbox[{{$key}}]"/>
                                         <input id="checkbox_hidden" type='checkbox' value='1' name="checkbox[{{$key}}]"/>
                                 </div>

@@ -222,18 +222,17 @@ class ZohoController extends Controller
 
     /**
      * Map list of values to Google SQL
-     * @param : $[name] [<description>]
+     * @param : $request
      * @return \Illuminate\Http\Response
-     * // @todo: receive values through form
      */
     public function map(Request $request)
     {
         
-        // foreach ($request->input('checkbox') as $key=>$box) {
-        //     if ($box == "1") {
-        //         return $request->input('label')[$key];
-        //     }
-        // }
+        foreach ($request->input('checkbox') as $key=>$box) {
+            if ($box == "1") {
+                return $request->input('label')[$key];
+            }
+        }
         // $googleClient = Google::getClient(config('google'));
         // dd($googleClient);
         // $client = new \PulkitJalan\Google\Client(config('google'));

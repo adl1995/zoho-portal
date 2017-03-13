@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+get('protected', ['middleware' => ['auth', 'admin'], function() {
+    return "testing Admin";
+}]);
+
 Route::get('/account/verify', 'Auth\RegisterController@verifyAccount')->name('verify');
 Route::resource('home', 'HomeController');
 Route::get('/zoho', 'ZohoController@index');

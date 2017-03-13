@@ -34,4 +34,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\ZohoKey');
     }
+
+    /**
+     * Check if current user is an admin
+     */
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }   
 }

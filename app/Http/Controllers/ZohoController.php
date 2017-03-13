@@ -238,7 +238,6 @@ class ZohoController extends Controller
 
         foreach ($request->input('checkbox') as $key=>$box) {
             if ($box == "1") {
-                // return $request->input('label')[$key];
                 ZohoModuleField::create([
                     'user_id' => Auth::user()->id,
                     'module' => $request->input('module_name'),
@@ -254,6 +253,7 @@ class ZohoController extends Controller
             }
         }
         return 'success';
+        // @todo: map these fields to Google SQL
         // $googleClient = Google::getClient(config('google'));
         // dd($googleClient);
         // $client = new \PulkitJalan\Google\Client(config('google'));

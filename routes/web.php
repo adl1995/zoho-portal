@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-get('protected', ['middleware' => ['auth', 'admin'], function() {
+Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
     return "testing Admin";
 }]);
 

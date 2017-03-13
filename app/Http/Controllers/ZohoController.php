@@ -87,7 +87,7 @@ class ZohoController extends Controller
     }
 
     /**
-     * Get list all modules
+     * Get list of all modules
      *
      * @return \Illuminate\Http\Response
      */
@@ -228,13 +228,21 @@ class ZohoController extends Controller
      */
     public function map(Request $request)
     {
+
+        $response = $this->call_zoho_api('Info', 'getModules');
+
+        $zoho_id = null;
+        foreach ($response['response']['result']['row'] as $module_row)
+            if ($module_row['pl'] == $request->input('module_name'))
+                $zoho_id = $module_row['id'];
+
         foreach ($request->input('checkbox') as $key=>$box) {
             if ($box == "1") {
                 // return $request->input('label')[$key];
                 ZohoModuleField::create([
                     'user_id' => Auth::user()->id,
                     'module' => $request->input('module_name'),
-                    'zoho_id' => '123123123',
+                    'zoho_id' => $zoho_id,
                     'label' => $request->input('label')[$key],
                     'customfield' => $request->input('customfield')[$key],
                     'maxlength' => $request->input('maxlength')[$key],

@@ -21,6 +21,12 @@ Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
     return "testing Admin";
 }]);
 
+// @todo: wrap with admin middleware
+Route::get('/list/clients', 'AdminController@listClients');
+Route::post('/suspend/{id}', 'AdminController@suspendClient');
+Route::post('/error_log', 'AdminController@errorLog');
+Route::post('/{id}/sync', 'AdminController@syncClient');
+
 Route::get('/account/verify', 'Auth\RegisterController@verifyAccount')->name('verify');
 Route::resource('home', 'HomeController');
 Route::get('/zoho', 'ZohoController@index');

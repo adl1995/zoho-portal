@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Wabel\Zoho\CRM\ZohoClient;
 use Wabel\Zoho\CRM\AbstractZohoDao;
 use Illuminate\Http\Request;
+use App\ZohoModuleField;
 
 // loading facades
 use Auth;
@@ -227,12 +228,24 @@ class ZohoController extends Controller
      */
     public function map(Request $request)
     {
-        
         foreach ($request->input('checkbox') as $key=>$box) {
             if ($box == "1") {
-                return $request->input('label')[$key];
+                // return $request->input('label')[$key];
+                ZohoModuleField::create([
+                    'user_id' => Auth::user()->id,
+                    'module' => $request->input('module_name'),
+                    'zoho_id' => '123123123',
+                    'label' => $request->input('label')[$key],
+                    'customfield' => $request->input('customfield')[$key],
+                    'maxlength' => $request->input('maxlength')[$key],
+                    'isreadonly' => $request->input('isreadonly')[$key],
+                    'type' => $request->input('type')[$key],
+                    'required' => $request->input('req')[$key],
+
+                ]);
             }
         }
+        return 'success';
         // $googleClient = Google::getClient(config('google'));
         // dd($googleClient);
         // $client = new \PulkitJalan\Google\Client(config('google'));

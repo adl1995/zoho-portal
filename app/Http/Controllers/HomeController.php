@@ -47,7 +47,7 @@ class HomeController extends Controller
         if (count($keys) == 0)
             $key = ZohoKey::create(['zoho_key' => $request->zoho_key, 'user_id' => Auth::user()->id]);
         
-        return (ZohoKey::find(1)->user);
+        // return (ZohoKey::find(1)->user);
         return view('home');
     }
 }

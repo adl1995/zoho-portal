@@ -17,13 +17,14 @@
             </div>
             <form action="/zoho/map" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="module_name" value="{{ $module }}">
                 @foreach($rows as $key=>$row)		
                     <div class="row margin-0">
                         <div class="col-md-1">
                             <div class="cell">
                                 <div class="propertyname">
-                                        <input id="checkbox" type="hidden" value="0" name="checkbox[{{$key}}]"/>
-                                        <input id="checkbox_hidden" type='checkbox' value='1' name="checkbox[{{$key}}]"/>
+                                    <input id="checkbox" type="hidden" value="0" name="checkbox[{{$key}}]"/>
+                                    <input id="checkbox_hidden" type='checkbox' value='1' name="checkbox[{{$key}}]"/>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +66,7 @@
                         <div class="col-md-1">
                             <div class="cell">
                                 <div class="description">
-                                    <span name="req[]" value="{{ $row['req'] }}">{{ $row['req'] }}</span>
+                                    <input name="req[]" value="{{ $row['req'] }}"/>
                                 </div>
                             </div>
                         </div>

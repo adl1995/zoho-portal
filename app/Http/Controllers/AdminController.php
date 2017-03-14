@@ -27,7 +27,7 @@ class AdminController extends Controller
     public function listClients()
     {
     	$users = User::where('is_admin', 0)->get();
-    	return $users;
+    	return view('admin.list-clients', compact('users'));
     }
 
 }

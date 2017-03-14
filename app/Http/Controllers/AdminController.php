@@ -12,7 +12,6 @@ class AdminController extends Controller
      *
      * @return void
      */
-    
     public function __construct()
     {
         $this->middleware('admin');
@@ -23,11 +22,21 @@ class AdminController extends Controller
      *
      * @return void
      */
-    
     public function listClients()
     {
     	$users = User::where('is_admin', 0)->get();
-    	return view('admin.list-clients', compact('users'));
+    	return view('admin.clients', compact('users'));
+    }
+
+    /**
+     * List a client's details
+     *
+     * @return void
+     */
+    public function listClientsDetails($id)
+    {
+    	$user = User::find($id);
+    	return view('admin.client-details', compact('user'));
     }
 
 }

@@ -12,11 +12,12 @@
                 <div class="col-md-3"><div class="header">E-mail</div></div>
                 <div class="col-md-2"><div class="header">Company</div></div>
                 <div class="col-md-2"><div class="header">City</div></div>
-                <div class="col-md-2"><div class="header">Verified</div></div>
+                <div class="col-md-1"><div class="header">Verified</div></div>
+                <div class="col-md-1"></div>
             </div>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @foreach($users as $key=>$user)		
-                    <div class="row margin-0">
+                    <div class="row margin-0">	
 	                    <div class="col-md-1">
                             <div class="cell">
                                 <div class="propertyname">
@@ -52,10 +53,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <div class="cell">
                                 <div class="description">
                                     <span name="verified[]">{{ $user['is_verified'] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="cell">
+                                <div class="description">
+                            		<a class="btn btn-success" href="/clients/{{ $user['id'] }}">Details</a>
                                 </div>
                             </div>
                         </div>

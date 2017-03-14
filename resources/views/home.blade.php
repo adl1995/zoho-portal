@@ -18,7 +18,6 @@
                     <span class="help-block">
                         <strong>Please verify your account. For any queries, contact: mail@zoho.net</strong>
                     </span>
-
                 @else
                     <form action="{{ route('home.store') }}" method="POST" accept-charset="utf-8">
                         {{ csrf_field() }}

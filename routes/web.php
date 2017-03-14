@@ -21,11 +21,12 @@ Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
     return "testing Admin";
 }]);
 
-// @todo: wrap with admin middleware
-Route::get('/list/clients', 'AdminController@listClients');
-Route::post('/suspend/{id}', 'AdminController@suspendClient');
-Route::post('/error_log', 'AdminController@errorLog');
-Route::post('/{id}/sync', 'AdminController@syncClient');
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('/list/clients', 'AdminController@listClients');
+	Route::post('/suspend/{id}', 'AdminController@suspendClient');
+	Route::post('/error_log', 'AdminController@errorLog');
+	Route::post('/{id}/sync', 'AdminController@syncClient');
+});
 
 Route::get('/account/verify', 'Auth\RegisterController@verifyAccount')->name('verify');
 Route::resource('home', 'HomeController');
@@ -33,7 +34,7 @@ Route::get('/zoho', 'ZohoController@index');
 Route::get('/zoho/home', 'ZohoController@home');
 Route::get('/zoho/integrations', 'ZohoController@integrations');
 Route::get('/zoho/{module}/fields', 'ZohoController@fields');
-Route::get('/zoho/fields/values', 'ZohoController@fieldValues'); //TODO: add slug
+Route::get('/zoho/fields/values', 'ZohoController@fieldValues'); //@todo add slug
 Route::get('/zoho/records', 'ZohoController@records');
 Route::post('/zoho/map', 'ZohoController@map');
 Route::post('/verify', 'ZohoController@verify');

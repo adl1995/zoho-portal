@@ -35,6 +35,7 @@ class AdminController extends Controller
      */
     public function listClientsDetails($id)
     {
+    	// @todo link buttons, update view, add functionality
     	$user = User::find($id);
     	return view('admin.client-details', compact('user'));
     }

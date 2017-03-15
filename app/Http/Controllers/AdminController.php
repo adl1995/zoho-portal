@@ -12,6 +12,7 @@ class AdminController extends Controller
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('admin');
@@ -22,6 +23,7 @@ class AdminController extends Controller
      *
      * @return void
      */
+    
     public function listClients()
     {
     	$users = User::where('is_admin', 0)->get();
@@ -33,11 +35,27 @@ class AdminController extends Controller
      *
      * @return void
      */
+    
     public function listClientsDetails($id)
     {
-    	// @todo link buttons, update view, add functionality
+        $user = User::find($id);
+        return view('admin.client-details', compact('user'));
+    }
+
+    /**
+     * Manually verify a client
+     *
+     * @return void
+     */
+    
+    public function verifyClient($id)
+    {
     	$user = User::find($id);
-    	return view('admin.client-details', compact('user'));
+        $user->is_verified = 1;
+        $user->save();
+        return redirect()->action(
+            'AdminController@listClientsDetails', ['id' => $id]
+        );
     }
 
 }

@@ -59,7 +59,7 @@
                     <a class="navbar-brand" href="#">
                         |
                     </a>
-                    <a class="navbar-brand" href="{{ url('/list/clients') }}">
+                    <a class="navbar-brand" href="{{ url('clients') }}">
                         List clients
                     </a>
                     @endif

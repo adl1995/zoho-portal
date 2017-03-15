@@ -3,7 +3,7 @@
 
 @if(isset($users))
     <div class="container">
-        <h2 class="text-center">List of all registered clients</h2>
+        <h2 class="text-center">Registered clients</h2>
         <hr />
         <div class="container method">
             <div class="row margin-0 list-header hidden-sm hidden-xs">

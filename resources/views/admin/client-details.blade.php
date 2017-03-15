@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
+<div class="text-center container">
     <h2 class="text-center">Client details</h2>
 	<br/><br/>
 	<div class="row">
@@ -94,6 +94,22 @@
  	</div>
 	<div class="row">
 		<div class="col-md-4">
+			<label>Records count</label>
+		</div>
+		<div class="col-md-6">
+			<input type="text/submit/hidden/button/etc" name="Name" value="{{$user['created_at']}}" readonly>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<label>Error log</label>
+		</div>
+		<div class="col-md-6">
+			<input type="text/submit/hidden/button/etc" name="Name" value="{{$user['created_at']}}" readonly>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
 			<label>Created at:</label>
 		</div>
 		<div class="col-md-6">
@@ -102,9 +118,24 @@
 	</div>
 	<br/><br/>
 	<div class="text-center">
-		<input class="btn btn-success" type="submit" value="Verify user">
-		<input class="btn btn-success" type="submit" value="Suspend">
-		<input class="btn btn-success" type="submit" value="Sync">
+		<div class="col-md-4">
+			<form action="/clients/{{$user['id']}}/verify" method="POST" accept-charset="utf-8">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input class="btn btn-success" type="submit" value="Verify user">
+			</form>
+		</div>
+		<div class="col-md-4">
+			<form action="/clients/{{$user['id']}}/verify" method="POST" accept-charset="utf-8">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input class="btn btn-success" type="submit" value="Suspend">
+			</form>
+		</div>
+		<div class="col-md-4">
+			<form action="/clients/{{$user['id']}}/verify" method="POST" accept-charset="utf-8">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input class="btn btn-success" type="submit" value="Sync">
+			</form>
+		</div>
 	</div>
 </div>
 @endsection

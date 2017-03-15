@@ -228,31 +228,34 @@ class ZohoController extends Controller
      */
     public function map(Request $request)
     {
+        if (Auth::user()->is_suspended == 0) {
+            $response = $this->call_zoho_api('Info', 'getModules');
 
-        $response = $this->call_zoho_api('Info', 'getModules');
+            $zoho_id = null;
+            foreach ($response['response']['result']['row'] as $module_row)
+                if ($module_row['pl'] == $request->input('module_name'))
+                    $zoho_id = $module_row['id'];
 
-        $zoho_id = null;
-        foreach ($response['response']['result']['row'] as $module_row)
-            if ($module_row['pl'] == $request->input('module_name'))
-                $zoho_id = $module_row['id'];
+            foreach ($request->input('checkbox') as $key=>$box) {
+                if ($box == "1") {
+                    ZohoModuleField::create([
+                        'user_id' => Auth::user()->id,
+                        'module' => $request->input('module_name'),
+                        'zoho_id' => $zoho_id,
+                        'label' => $request->input('label')[$key],
+                        'customfield' => $request->input('customfield')[$key],
+                        'maxlength' => $request->input('maxlength')[$key],
+                        'isreadonly' => $request->input('isreadonly')[$key],
+                        'type' => $request->input('type')[$key],
+                        'required' => $request->input('req')[$key],
 
-        foreach ($request->input('checkbox') as $key=>$box) {
-            if ($box == "1") {
-                ZohoModuleField::create([
-                    'user_id' => Auth::user()->id,
-                    'module' => $request->input('module_name'),
-                    'zoho_id' => $zoho_id,
-                    'label' => $request->input('label')[$key],
-                    'customfield' => $request->input('customfield')[$key],
-                    'maxlength' => $request->input('maxlength')[$key],
-                    'isreadonly' => $request->input('isreadonly')[$key],
-                    'type' => $request->input('type')[$key],
-                    'required' => $request->input('req')[$key],
-
-                ]);
+                    ]);
+                }
             }
         }
-        return 'success';
+        else
+            return 'Account suspend. Please contact Administrator';
+            
         // @todo: map these fields to Google SQL
         // $googleClient = Google::getClient(config('google'));
         // dd($googleClient);

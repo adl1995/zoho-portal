@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('clients', 'AdminController@listClients');
 	Route::get('clients/{id}', 'AdminController@listClientsDetails');
 	Route::post('clients/{id}/verify', 'AdminController@verifyClient');
-	Route::post('/suspend/{id}', 'AdminController@suspendClient');
+	Route::post('clients/{id}/suspend', 'AdminController@suspendClient');
 	Route::post('/error_log', 'AdminController@errorLog');
 	Route::post('/{id}/sync', 'AdminController@syncClient');
 });

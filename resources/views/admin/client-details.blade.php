@@ -86,6 +86,14 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4">
+			<label>Suspended:</label>
+		</div>
+		<div class="col-md-6">
+			<input type="text/submit/hidden/button/etc" name="Name" value="{{$user['is_suspended']}}" readonly>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
 			<label>Zoho API key:</label>
 		</div>
 		<div class="col-md-6">
@@ -125,7 +133,7 @@
 			</form>
 		</div>
 		<div class="col-md-4">
-			<form action="/clients/{{$user['id']}}/verify" method="POST" accept-charset="utf-8">
+			<form action="/clients/{{$user['id']}}/suspend" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Suspend">
 			</form>

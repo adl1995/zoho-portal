@@ -126,21 +126,27 @@
 	</div>
 	<br/><br/>
 	<div class="text-center">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<form action="/clients/{{$user['id']}}/verify" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Verify user">
 			</form>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<form action="/clients/{{$user['id']}}/suspend" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Suspend">
 			</form>
 		</div>
-		<div class="col-md-4">
-			<form action="/clients/{{$user['id']}}/verify" method="POST" accept-charset="utf-8">
+		<div class="col-md-3">
+			<form action="/clients/{{$user['id']}}/reactivate" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input class="btn btn-success" type="submit" value="Reactivate">
+			</form>
+		</div>
+		<div class="col-md-3">
+			<form action="/clients/{{$user['id']}}/sync" method="POST" accept-charset="utf-8">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Sync">
 			</form>
 		</div>

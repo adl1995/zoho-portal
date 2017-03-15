@@ -61,8 +61,23 @@ class AdminController extends Controller
      */
     public function suspendClient($id)
     {
-    	$user = User::find($id);
+        $user = User::find($id);
         $user->is_suspended = 1;
+        $user->save();
+        return redirect()->action(
+            'AdminController@listClientsDetails', ['id' => $id]
+        );
+    }
+
+    /**
+     * Reactivate a client
+     *
+     * @return void
+     */
+    public function reactivateClient($id)
+    {
+    	$user = User::find($id);
+        $user->is_suspended = 0;
         $user->save();
         return redirect()->action(
             'AdminController@listClientsDetails', ['id' => $id]

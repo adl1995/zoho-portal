@@ -25,6 +25,7 @@ class CreateZohoModuleFields extends Migration
             $table->string('isreadonly');
             $table->string('type');
             $table->string('required');
+            $table->timestamp('last_sync_date')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

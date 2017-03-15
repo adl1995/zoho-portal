@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\ZohoModuleField;
 
 class AdminController extends Controller
 {
@@ -76,12 +77,24 @@ class AdminController extends Controller
      */
     public function reactivateClient($id)
     {
-    	$user = User::find($id);
+        $user = User::find($id);
         $user->is_suspended = 0;
         $user->save();
         return redirect()->action(
             'AdminController@listClientsDetails', ['id' => $id]
         );
+    }
+
+    /**
+     * Suspend a client
+     *
+     * @return void
+     */
+    public function syncClient($id)
+    {
+        $fields = ZohoModuleField::where('user_id', $id)->get();
+        // @todo: sync data with Google SQL and update last sync time
+        return $fields;
     }
 
 }

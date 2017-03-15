@@ -13,8 +13,8 @@ class CreateModifyTableMigration extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_suspended')->default(0);
+        Schema::table('zoho_module_fields', function (Blueprint $table) {
+            $table->timestamp('last_sync_date')->nullable();
         });
     }
 

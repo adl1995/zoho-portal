@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('state');
             $table->string('zip');
             $table->boolean('is_verified')->default(0);
+            $table->boolean('is_suspended')->default(0);
             $table->string('verify_key');
             $table->string('email')->unique();
             $table->boolean('email_verified')->default(0);

@@ -229,7 +229,7 @@ class ZohoController extends Controller
     }
 
     /**
-     * Map list of values to Google SQL
+     * Store field values in local database and sync them to Google SQL
      * @param : $request
      * @return \Illuminate\Http\Response
      */
@@ -278,6 +278,18 @@ class ZohoController extends Controller
         // $client = new Google_Client();
 
         return $request->all();
+    }
+
+    /**
+     * Sync values with Google SQL
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function sync()
+    {
+        $rows = ZohoModuleField::all();
+        return $rows;
     }
 
     /**

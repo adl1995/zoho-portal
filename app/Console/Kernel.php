@@ -13,19 +13,24 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\syncClientData::class
     ];
 
     /**
      * Define the application's command schedule.
+     * Update client data every 24 hours
+     * Verify client email addresses every 4 months
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('App\Http\Controllers\ZohoController@sync')
+                 ->daily();
+
+        // $schedule->command('App\Http\Controllers\ZohoController@verify')
+        //          ->quarterly();
     }
 
     /**

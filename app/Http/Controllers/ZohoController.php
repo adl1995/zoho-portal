@@ -91,6 +91,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index(Request $request)
     {
         $response = $this->call_zoho_api('Info', 'getModules');
@@ -104,13 +105,51 @@ class ZohoController extends Controller
     }
 
     /**
+     * List all fields in a module
+     * @param : $module
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function fields($module)
+    {
+        $response = $this->call_zoho_api($module, 'getFields');
+        if (isset($response[$module]['section'])) {
+            $rows = $response[$module]['section'][0]['FL'];
+            return view('zoho.modules.fields', compact('rows', 'module'));
+        }
+        else
+            return view('zoho.modules.fields')->with('error', 'No fields found');
+    }
+
+    /**
+     * List all values belonging to a field
+     * @param :
+     * @return \Illuminate\Http\Response
+     * // @todo: add slug
+     */
+    
+    public function fieldValues()
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://crm.zoho.com/crm/private/xml/Leads/getSearchRecordsByPDC?authtoken=". config('app.ZOHO_KEY') ."&scope=crmapi");
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
+
+        $content = curl_exec($ch);
+        return $content;
+        curl_close($ch);
+    }
+
+    /**
      * Get the homepage
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function home(Request $request)
     {
-        return view('zoho.dashboard');
+        return view('home');
         $response = $this->call_zoho_api('Leads', 'getRecords');
         $response = $this->call_zoho_api('Leads', 'getRecords');
         $response = $this->call_zoho_api('Leads', 'getRecords');
@@ -122,6 +161,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function integrations()
     {
         return view('zoho.integrations');
@@ -132,6 +172,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function verify(Request $request)
     {
         $record = $this->call_zoho_api('Contacts', 'getRecords');
@@ -167,46 +208,11 @@ class ZohoController extends Controller
             }
         }
         else {
-            // @todo: redirect with notification
+            return view('zoho.home')->with('error', 'API connection failure');
         }
+
         $user->save();
         return redirect()->action('ZohoController@index');
-    }
-
-    /**
-     * List all fields in a module
-     * @param : $[name] [<description>]
-     * @return \Illuminate\Http\Response
-     */
-    public function fields($module)
-    {
-        $response = $this->call_zoho_api($module, 'getFields');
-        if (isset($response[$module]['section'])) {
-            $rows = $response[$module]['section'][0]['FL'];
-            return view('zoho.modules.fields', compact('rows', 'module'));
-        }
-        else
-            return view('zoho.modules.fields')->with('error', 'No fields found');
-
-    }
-
-    /**
-     * List all values belonging to a field
-     * @param : $[name] [<description>]
-     * @return \Illuminate\Http\Response
-     * // @todo: add slug
-     */
-    public function fieldValues()
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://crm.zoho.com/crm/private/xml/Leads/getSearchRecordsByPDC?authtoken=". config('app.ZOHO_KEY') ."&scope=crmapi");
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
-
-        $content = curl_exec($ch);
-        return $content;
-        curl_close($ch);
     }
 
     /**
@@ -215,6 +221,7 @@ class ZohoController extends Controller
      * @return \Illuminate\Http\Response
      * // @todo: add slug
      */
+    
     public function records()
     {
         $response = $this->call_zoho_api('Accounts', 'getRecords');
@@ -226,6 +233,7 @@ class ZohoController extends Controller
      * @param : $request
      * @return \Illuminate\Http\Response
      */
+    
     public function map(Request $request)
     {
         if (Auth::user()->is_suspended == 0) {
@@ -277,6 +285,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function create(Request $request)
     {
         $zoho = new Zoho\CRM\Client('MY_ZOHO_AUTH_TOKEN');
@@ -292,6 +301,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request)
     {
         $zoho = new Zoho\CRM\Client('MY_ZOHO_AUTH_TOKEN');
@@ -308,6 +318,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function delete(Request $request)
     {
         $zoho = new Zoho\CRM\Client('MY_ZOHO_AUTH_TOKEN');
@@ -323,6 +334,7 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function moduleFields(Request $request)
     {
         $zoho = new Zoho\CRM\Client('MY_ZOHO_AUTH_TOKEN');

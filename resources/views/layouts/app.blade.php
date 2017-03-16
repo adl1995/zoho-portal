@@ -55,13 +55,15 @@
                     <a class="navbar-brand" href="{{ url('/zoho/integrations') }}">
                         Integrations
                     </a>
-                    @if (Auth::user()->is_admin == 1)
-                    <a class="navbar-brand" href="#">
-                        |
-                    </a>
-                    <a class="navbar-brand" href="{{ url('clients') }}">
-                        List clients
-                    </a>
+                    @if (isset(Auth::user()->is_admin))
+                        @if (Auth::user()->is_admin == 1)
+                        <a class="navbar-brand" href="#">
+                            |
+                        </a>
+                        <a class="navbar-brand" href="{{ url('clients') }}">
+                            List clients
+                        </a>
+                        @endif
                     @endif
                 </div>
 

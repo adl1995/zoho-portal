@@ -32,7 +32,7 @@ class HomeController extends Controller
         //     $m->from('mail@zoho.net', 'Zoho');
         //     $m->to('adeelahmad14@hotmail.com', $user->first_name)->subject('Zoho Portal - Verfiy your account');
         // });
-        return view('home');
+        return view('zoho.dashboard');
     }
 
     /**

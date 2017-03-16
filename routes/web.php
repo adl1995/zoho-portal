@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ZohoController@home');
 
 Auth::routes();
 
@@ -34,13 +32,16 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/account/verify', 'Auth\RegisterController@verifyAccount')->name('verify');
 Route::resource('home', 'HomeController');
-Route::get('/zoho', 'ZohoController@index');
-Route::get('/zoho/home', 'ZohoController@home');
-Route::get('/zoho/integrations', 'ZohoController@integrations');
-Route::get('/zoho/{module}/fields', 'ZohoController@fields');
-Route::get('/zoho/fields/values', 'ZohoController@fieldValues'); //@todo add slug
-Route::get('/zoho/records', 'ZohoController@records');
-Route::post('/zoho/map', 'ZohoController@map');
-Route::post('/verify', 'ZohoController@verify');
+
+Route::group(['prefix' => 'zoho'], function () {
+	Route::get('/', 'ZohoController@index');
+	Route::get('/home', 'ZohoController@home');
+	Route::get('/integrations', 'ZohoController@integrations');
+	Route::get('/{module}/fields', 'ZohoController@fields');
+	Route::get('/fields/values', 'ZohoController@fieldValues'); //@todo add slug
+	Route::get('/records', 'ZohoController@records');
+	Route::post('/map', 'ZohoController@map');
+	Route::post('/verify', 'ZohoController@verify');
+});
 
 Route::get('/test/sql', 'ZohoController@map');

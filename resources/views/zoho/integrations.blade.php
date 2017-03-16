@@ -23,7 +23,7 @@
   			<button class="btn btn-danger deactivate">Deactivate</button>
         <br/><br/>
 
-        <form action="/verify" method="POST" accept-charset="utf-8">
+        <form action="/zoho/verify" method="POST" accept-charset="utf-8">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="container">
             <div class="row">

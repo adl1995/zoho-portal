@@ -288,6 +288,7 @@ class ZohoController extends Controller
     
     public function sync()
     {
+        echo "string";
         $rows = ZohoModuleField::all();
         return $rows;
     }

@@ -11,6 +11,7 @@ use App\ZohoModuleField;
 use Auth;
 use Config;
 use Google;
+use Charts;
 
 class ZohoController extends Controller
 {
@@ -142,14 +143,26 @@ class ZohoController extends Controller
     }
 
     /**
-     * Get the homepage
+     * Get the homepage / dashboard
      *
      * @return \Illuminate\Http\Response
      */
     
     public function home(Request $request)
     {
-        return view('home');
+        $record = $this->call_zoho_api('Contacts', 'getRecords');
+        $contacts = $record['response']['result']['Contacts']['row'];
+        $sync_contacts_count = count($contacts);
+        $sync_times = [];
+        foreach ($contacts as $contact) {
+            foreach ($contact['FL'] as $contact_details) {
+                if ($contact_details['val'] == "Last Activity Time") {
+                    array_push($sync_times, $contact_details['content']);
+                }
+            }
+        }
+
+        return view('zoho.dashboard');
         $response = $this->call_zoho_api('Leads', 'getRecords');
         $response = $this->call_zoho_api('Leads', 'getRecords');
         $response = $this->call_zoho_api('Leads', 'getRecords');
@@ -356,5 +369,32 @@ class ZohoController extends Controller
         $one_lead = $zoho->leads->getById('1212717324723478324');
         $many_leads = $zoho->leads->getByIds(['8734873457834574028', '3274736297894375750']);
         $admins = $zoho->users->getAdmins();
+    }
+
+    /**
+     * Testing the charts module
+     *
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function chart(Request $request)
+    {
+        $chart = Charts::multi('bar', 'material')
+            // Setup the chart settings
+            ->title("My Cool Chart")
+            // A dimension of 0 means it will take 100% of the space
+            ->dimensions(0, 400) // Width x Height
+            // This defines a preset of colors already done:)
+            ->template("material")
+            // You could always set them manually
+            // ->colors(['#2196F3', '#F44336', '#FFC107'])
+            // Setup the diferent datasets (this is a multi chart)
+            ->dataset('Element 1', [5,20,100])
+            ->dataset('Element 2', [15,30,80])
+            ->dataset('Element 3', [25,10,40])
+            // Setup what the values mean
+            ->labels(['One', 'Two', 'Three']);
+
+        return view('zoho.dashboard', ['chart' => $chart]);
     }
 }

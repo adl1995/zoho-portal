@@ -21,12 +21,13 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the homepage.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
+        return view('home');
         // $user = Auth::user();
         // Mail::send('emails.verify', ['verify_key' => $user->verify_key, 'user' => $user], function ($m) use ($user, $request) {
         //     $m->from('mail@zoho.net', 'Zoho');

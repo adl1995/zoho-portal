@@ -202,6 +202,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,
         PulkitJalan\Google\GoogleServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+
     ],
 
     /*
@@ -250,7 +252,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Google' => PulkitJalan\Google\Facades\Google::class
+        'Google' => PulkitJalan\Google\Facades\Google::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
     ],
 
 ];

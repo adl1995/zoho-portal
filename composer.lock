@@ -4,9 +4,47 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "177d0fcef3299ec4d1baa5b900616f46",
-    "content-hash": "7af125bb658847f4680b56e0e85bc323",
+    "hash": "9e44238cff451637cf777c47baef713e",
+    "content-hash": "d81900c521bce4c2ce1a7161d75295d7",
     "packages": [
+        {
+            "name": "consoletvs/charts",
+            "version": "4.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ConsoleTVs/Charts.git",
+                "reference": "1ac0e4a52fdb904acd36303d6c564f5ce55e8392"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/1ac0e4a52fdb904acd36303d6c564f5ce55e8392",
+                "reference": "1ac0e4a52fdb904acd36303d6c564f5ce55e8392",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "jlawrence/eos": "3.*",
+                "php": ">=5.6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ConsoleTVs\\Charts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erik Campobadal",
+                    "email": "soc@erik.cat"
+                }
+            ],
+            "description": "Create charts for laravel using diferent charts libraries",
+            "time": "2017-03-08 16:53:29"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -1139,6 +1177,49 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
+        },
+        {
+            "name": "jlawrence/eos",
+            "version": "v3.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jlawrence11/eos.git",
+                "reference": "25e3d0f2316cb4636000f452a8e7dcc83725a32a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jlawrence11/eos/zipball/25e3d0f2316cb4636000f452a8e7dcc83725a32a",
+                "reference": "25e3d0f2316cb4636000f452a8e7dcc83725a32a",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "jlawrence\\eos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1+"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Lawrence",
+                    "email": "jon@jon-lawrence.com"
+                }
+            ],
+            "description": "Parse and solve math equations without using 'eval()'.",
+            "keywords": [
+                "eos",
+                "equations",
+                "math",
+                "solve"
+            ],
+            "time": "2016-03-02 22:35:41"
         },
         {
             "name": "laravel/framework",
@@ -3262,7 +3343,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Wabel/zoho-crm-orm/zipball/c5ba27f52e92d930564feaa9daf5f84f7be3a810",
+                "url": "https://api.github.com/repos/Wabel/zoho-crm-orm/zipball/bb7ec5e33086d8975ab800f378af8776a8e9a9cd",
                 "reference": "c5ba27f52e92d930564feaa9daf5f84f7be3a810",
                 "shasum": ""
             },

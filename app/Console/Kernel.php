@@ -146,9 +146,10 @@ class Kernel extends ConsoleKernel
 
     /**
      * Define the application's command schedule.
-     * Update client data every 24 hours
-     * Verify client email addresses every 4 months
-     * Verify newly added client every night
+     * 
+     * Update client data every 24 hours.
+     * Verify client email addresses every 4 months.
+     * Verify newly added client every night.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void

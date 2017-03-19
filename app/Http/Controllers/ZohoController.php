@@ -6,6 +6,7 @@ use Wabel\Zoho\CRM\ZohoClient;
 use Wabel\Zoho\CRM\AbstractZohoDao;
 use Illuminate\Http\Request;
 use App\ZohoModuleField;
+use App\User;
 
 // loading facades
 use Auth;
@@ -152,21 +153,34 @@ class ZohoController extends Controller
     {
         $record = $this->call_zoho_api('Contacts', 'getRecords');
         $contacts = $record['response']['result']['Contacts']['row'];
-        $sync_contacts_count = count($contacts);
-        $sync_times = [];
+        $synced_contacts_count = count($contacts);
+        $synced_contacts_times = [];
         foreach ($contacts as $contact) {
             foreach ($contact['FL'] as $contact_details) {
                 if ($contact_details['val'] == "Last Activity Time") {
-                    array_push($sync_times, $contact_details['content']);
+                    array_push($synced_contacts_times, $contact_details['content']);
                 }
             }
         }
 
-        return view('zoho.dashboard');
-        $response = $this->call_zoho_api('Leads', 'getRecords');
-        $response = $this->call_zoho_api('Leads', 'getRecords');
-        $response = $this->call_zoho_api('Leads', 'getRecords');
-        return $response;
+        $count_verified_emails = count(User::where('email_verified', 1)->get());
+        $count_unverified_emails = count(User::where('email_verified', 0)->get());
+
+        $email_activity_chart = Charts::create('pie', 'highcharts')
+          ->title('User Email Details')
+          ->labels(['Verified', 'Unverified'])
+          ->values([$count_verified_emails, $count_unverified_emails])
+          ->dimensions(1000,500)
+          ->responsive(true);
+
+        $user_activity_chart = Charts::create('pie', 'highcharts')
+          ->title('User Activity Details')
+          ->labels(['Verified', 'Unverified'])
+          ->values([$count_verified_emails, $count_unverified_emails])
+          ->dimensions(1000,500)
+          ->responsive(true);
+
+        return view('zoho.dashboard', compact('email_activity_chart', 'user_activity_chart', 'synced_contacts_count', 'synced_contacts_times'));
     }
 
     /**
@@ -379,22 +393,23 @@ class ZohoController extends Controller
     
     public function chart(Request $request)
     {
-        $chart = Charts::multi('bar', 'material')
-            // Setup the chart settings
-            ->title("My Cool Chart")
-            // A dimension of 0 means it will take 100% of the space
-            ->dimensions(0, 400) // Width x Height
-            // This defines a preset of colors already done:)
-            ->template("material")
-            // You could always set them manually
-            // ->colors(['#2196F3', '#F44336', '#FFC107'])
-            // Setup the diferent datasets (this is a multi chart)
-            ->dataset('Element 1', [5,20,100])
-            ->dataset('Element 2', [15,30,80])
-            ->dataset('Element 3', [25,10,40])
-            // Setup what the values mean
-            ->labels(['One', 'Two', 'Three']);
+        $count_verified_emails = count(User::where('email_verified', 1)->get());
+        $count_unverified_emails = count(User::where('email_verified', 0)->get());
 
-        return view('zoho.dashboard', ['chart' => $chart]);
+        $email_activity_chart = Charts::create('pie', 'highcharts')
+          ->title('User Email Details')
+          ->labels(['Verified', 'Unverified'])
+          ->values([$count_verified_emails, $count_unverified_emails])
+          ->dimensions(1000,500)
+          ->responsive(true);
+
+        $user_activity_chart = Charts::create('pie', 'highcharts')
+          ->title('User asdsadEmail Details')
+          ->labels(['Verified', 'Unverified'])
+          ->values([$count_verified_emails, $count_unverified_emails])
+          ->dimensions(1000,500)
+          ->responsive(true);
+
+        return view('zoho.dashboard', compact('email_activity_chart', 'user_activity_chart'));
     }
 }

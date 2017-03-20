@@ -6,24 +6,17 @@
     <h2 class="text-center">Client Dashboard</h2>
     <div class="text-center container">
     <br/><br/>
-        <div class="row">
-            <div class="col-md-2">
-                <label>Synced contacts:</label>
-            </div>
-            <div class="col-md-2">
+            <label>Synced contacts:</label>
+            <div class="row">
                 <input type="text/submit/hidden/button/etc" name="synced_contacts_count" value="{{ $synced_contacts_count }}" readonly>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-                <label>Synced contacts time:</label>
-            </div>
+            <br/>
+            <label>Synced contacts time:</label>
             @foreach ($synced_contacts_times as $synced_contacts_time)
-            <div class="col-md-2">
+            <div class="row">
                 <input type="text/submit/hidden/button/etc" name="synced_contacts_time" value="{{ $synced_contacts_time }}" readonly>
             </div>
             @endforeach
-        </div>
     </div>
     <br/><br/>
     <div class="container-fluid">
@@ -102,7 +95,7 @@
                 <br/>
                 <div class="container">
                     <div class="text-center">
-                        <input class="btn btn-success" type="submit" name="button" value="Sync fields">   
+                        <input class="btn btn-success" type="submit" name="button" value="Sync with Zoho">   
                     </div>
                 </div>
             </form>

@@ -180,7 +180,8 @@ class ZohoController extends Controller
           ->dimensions(1000,500)
           ->responsive(true);
 
-        return view('zoho.dashboard', compact('email_activity_chart', 'user_activity_chart', 'synced_contacts_count', 'synced_contacts_times'));
+        $fields = ZohoModuleField::where('user_id', Auth::user()->id)->get();
+        return view('zoho.dashboard', compact('email_activity_chart', 'user_activity_chart', 'synced_contacts_count', 'synced_contacts_times', 'fields'));
     }
 
     /**

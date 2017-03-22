@@ -31,7 +31,7 @@
                           <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">SIGN UP</a></li>
                       </ul>
                       <div class="tab-content">
-                          <div role="tabpanel" class="tab-pane active" id="login">
+                      <div role="tabpanel" class="tab-pane active" id="login">
                     	<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         	{{ csrf_field() }}
                               <div class="form-group">
@@ -59,15 +59,26 @@
                             </form>
                           </div>
                           <div role="tabpanel" class="tab-pane" id="register">
-                            <form>
+	                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+	                        {{ csrf_field() }}
                               <div class="form-group">
                                 <label>Full Name *</label>
                                 <div class="row">
                                   <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="First Name">
+                                    <input name="first_name" type="text" class="form-control" placeholder="First Name">
+	                                @if ($errors->has('first_name'))
+	                                    <span class="help-block">
+	                                        <strong>{{ $errors->first('first_name') }}</strong>
+	                                    </span>
+	                                @endif
                                   </div>
                                   <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Last Name">
+                                    <input name="last_name" type="text" class="form-control" placeholder="Last Name">
+	                                @if ($errors->has('last_name'))
+	                                    <span class="help-block">
+	                                        <strong>{{ $errors->first('last_name') }}</strong>
+	                                    </span>
+	                                @endif
                                   </div>
                                 </div>
                               </div>
@@ -75,44 +86,87 @@
                                 <div class="row">
                                   <div class="col-sm-6">
                                     <label>Email *</label>
-                                    <input type="email" class="form-control" placeholder="Email Address">
+                                    <input name="email" type="email" class="form-control" placeholder="Email Address">
+	                                @if ($errors->has('email'))
+	                                    <span class="help-block">
+	                                        <strong>{{ $errors->first('email') }}</strong>
+	                                    </span>
+	                                @endif
                                   </div>
                                   <div class="col-sm-6">
                                     <label>Company</label>
-                                    <input type="text" class="form-control" placeholder="Company">
+                                    <input name="company" type="text" class="form-control" placeholder="Company">
+									@if ($errors->has('company'))
+	                                    <span class="help-block">
+	                                        <strong>{{ $errors->first('company') }}</strong>
+	                                    </span>
+	                                @endif
                                   </div>
                                 </div>
                               </div>
                               <div class="form-group">
                                 <label>Address Line 1 *</label>
-                                <input type="text" class="form-control" placeholder="Address Line 1">
+                                <input name="address1" type="text" class="form-control" placeholder="Address Line 1">
+                                @if ($errors->has('address1 1'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address1') }}</strong>
+                                    </span>
+                                @endif
                               </div>
                               <div class="form-group">
                                 <label>Address Line 2</label>
-                                <input type="text" class="form-control" placeholder="Address Line 2">
+                                <input name="address2" type="text" class="form-control" placeholder="Address Line 2">
+                                @if ($errors->has('address2'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address2') }}</strong>
+                                    </span>
+                                @endif
                               </div>
                               <div class="form-group">
                                 <div class="row">
                                   <div class="col-sm-5">
                                     <label>City *</label>
-                                    <input type="text" class="form-control" placeholder="City">
+                                    <input name="city" type="text" class="form-control" placeholder="City">
+	                                @if ($errors->has('city'))
+	                                    <span class="help-block">
+	                                        <strong>{{ $errors->first('city') }}</strong>
+	                                    </span>
+	                                @endif
                                   </div>
                                   <div class="col-sm-3">
                                     <label>State *</label>
                                     <select class="form-control">
-                                      <option>--</option>
+                                    <option value=" --- ">---</option>
+                                   @foreach($states as $state=>$state_name)
+                                        <option value="{{ $state }}">{{ $state_name }}</option>
+                                    @endforeach
                                     </select>
+									@if ($errors->has('state'))
+	                                    <span class="help-block">
+	                                        <strong>{{ $errors->first('state') }}</strong>
+	                                    </span>
+	                                @endif
                                   </div>
                                   <div class="col-sm-4">
                                     <label>ZIP *</label>
-                                    <input type="text" class="form-control" placeholder="ZIP">
+                                    <input name="zip" type="text" class="form-control" placeholder="ZIP">
+	                                @if ($errors->has('zip'))
+	                                    <span class="help-block">
+	                                        <strong>{{ $errors->first('zip') }}</strong>
+	                                    </span>
+	                                @endif
                                   </div>
                                 </div>
                               </div>
                               <hr>
                               <div class="form-group">
                                 <label>Create Password * <span class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Minimum 8 characters: one uppercase, one lowercase, one number, and one special character.  No spaces."></span></label>
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input name="password" type="password" class="form-control" placeholder="Password">
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                               </div>
                               <div class="form-group">
                                 <label>Confirm Password *</label>

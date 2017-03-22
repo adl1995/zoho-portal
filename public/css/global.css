@@ -1,0 +1,232 @@
+/*    Font Variable
+----------------------*/
+/*    Color Variable
+-----------------------*/
+/*    Solid Color
+------------------*/
+/*    Brand color
+----------------------*/
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f5f5f5;
+  color: #878787;
+}
+a,
+button {
+  outline: none!important;
+  text-decoration: none!important;
+  color: #878787;
+  transition: all 0.2s ease 0s;
+}
+a:hover,
+button:hover,
+a:focus,
+button:focus,
+a.active,
+button.active {
+  color: #252525;
+  outline: none!important;
+  text-decoration: none!important;
+}
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+li {
+  list-style: none;
+}
+p {
+  font-family: 'MontserratLight', sans-serif;
+  color: #878787;
+  max-width: 800px;
+}
+.fw-light {
+  font-family: 'MontserratLight', sans-serif;
+}
+.tt-none {
+  text-transform: none;
+}
+.dib {
+  display: inline-block;
+}
+.rotate-90 {
+  transform: rotate(90deg);
+}
+.rotate-180 {
+  transform: rotate(180deg);
+}
+.main-content {
+  padding: 15px;
+}
+.alert h4 {
+  color: #878787;
+}
+/*    Color Mixins
+-------------------*/
+.text-primary,
+.color-primary {
+  color: #8fc9fb;
+}
+.text-success,
+.color-success {
+  color: #87de75;
+}
+.text-info,
+.color-info {
+  color: #19a9d5;
+}
+.text-danger,
+.color-danger {
+  color: #ed7f7e;
+}
+.text-warning,
+.color-warning {
+  color: #eeb043;
+}
+.text-pink,
+.color-pink {
+  color: #e6a1f2;
+}
+.text-dark,
+.color-dark {
+  color: #252525;
+}
+/*    Background Mixins
+--------------------------*/
+.bg-primary {
+  background: #433654;
+  color: #ffffff;
+}
+.bg-success {
+  background: #87de75;
+  color: #ffffff;
+}
+.bg-info {
+  background: #19a9d5;
+  color: #ffffff;
+}
+.bg-danger {
+  background: #ed7f7e;
+  color: #ffffff;
+}
+.bg-warning {
+  background: #eeb043;
+  color: #ffffff;
+}
+.bg-pink {
+  background: #e6a1f2;
+  color: #ffffff;
+}
+.bg-dark {
+  background: #252525;
+  color: #ffffff;
+}
+.bg-transparent {
+  background: transparent;
+  color: #252525;
+}
+/*    Border Mixins
+--------------------------*/
+.border-primary {
+  border-color: #8fc9fb;
+}
+.border-success {
+  border-color: #87de75;
+}
+.border-info {
+  border-color: #19a9d5;
+}
+.border-danger {
+  border-color: #ed7f7e;
+}
+.border-warning {
+  border-color: #eeb043;
+}
+.border-pink {
+  border-color: #e6a1f2;
+}
+.border-dark {
+  border-color: #252525;
+}
+.no-border {
+  border: 0px!important;
+}
+/*    Brand Background
+-----------------------------*/
+.bg-facebook {
+  background: #3b5998;
+}
+.bg-twitter {
+  background: #1da1f2;
+}
+/*    width
+-----------------------------*/
+.w10pr {
+  width: 10%;
+}
+.w12pr {
+  width: 12%;
+}
+/*    custom additions
+-----------------------------*/
+.lobipanel a[data-func="close"],
+.lobipanel a[data-func="expand"],
+.lobipanel a[data-func="reload"],
+.lobipanel a[data-func="unpin"],
+.lobipanel a[data-func="editTitle"] {
+  display: none;
+}
+.lobipanel .panel-heading .checkbox {
+  margin-top: 0;
+  padding-left: 10px;
+}
+.lobipanel > .panel-heading > .panel-title input[type="checkbox"] {
+  line-height: inherit;
+  border-radius: 0;
+  padding: 0;
+  width: auto;
+  background-color: transparent;
+  border: none;
+  margin-top: 7px;
+}
+.lobipanel .panel-heading .error,
+.lobipanel .panel-heading .fields {
+  display: inline-block;
+}
+.lobipanel .fields {
+  color: #8fc9fb;
+  margin-left: 10px;
+}
+.lobipanel .error {
+  color: #ed7f7e;
+  margin-left: 10px;
+}
+.lobipanel .panel-heading .dropdown .dropdown-menu > li > a:focus:hover,
+.lobipanel .panel-heading .dropdown .dropdown-menu > li > a:hover {
+  text-shadow: none;
+}
+.progress {
+  height: 40px;
+}
+.progress .progress-bar {
+  font-size: 14px;
+  line-height: 40px;
+}
+.sidebar {
+  top: 53px !important;
+  width: 180px;
+}
+.sidebar .nano-content > ul li > a > .badge {
+  background-color: #ed7f7e;
+}
+.sidebar.sidebar-shrink ~ .content-wrap {
+  margin-left: 180px;
+}
+.stat-widget-one .stat-content {
+  margin-left: 20px !important;
+}
+@media (max-width: 767px) {
+  .no-padding-mobile {
+    padding: 0 !important;
+  }
+}

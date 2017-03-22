@@ -1,22 +1,24 @@
 @extends('layouts.app')
 @section('content')
-        {!! Charts::assets() !!}
+    
+    {!! Charts::assets() !!}
+    
     </head>
     <body>
     <h2 class="text-center">Client Dashboard</h2>
     <div class="text-center container">
-    <br/><br/>
-            <label>Synced contacts:</label>
-            <div class="row">
-                <input type="text/submit/hidden/button/etc" name="synced_contacts_count" value="{{ $synced_contacts_count }}" readonly>
-            </div>
-            <br/>
-            <label>Synced contacts time:</label>
-            @foreach ($synced_contacts_times as $synced_contacts_time)
-            <div class="row">
-                <input type="text/submit/hidden/button/etc" name="synced_contacts_time" value="{{ $synced_contacts_time }}" readonly>
-            </div>
-            @endforeach
+        <br/><br/>
+        <label>Synced contacts:</label>
+        <div class="row">
+            <input type="text/submit/hidden/button/etc" name="synced_contacts_count" value="{{ $synced_contacts_count }}" readonly>
+        </div>
+        <br/>
+        <label>Synced contacts time:</label>
+        @foreach ($synced_contacts_times as $synced_contacts_time)
+        <div class="row">
+            <input type="text/submit/hidden/button/etc" name="synced_contacts_time" value="{{ $synced_contacts_time }}" readonly>
+        </div>
+        @endforeach
     </div>
     <br/><br/>
     <div class="container-fluid">

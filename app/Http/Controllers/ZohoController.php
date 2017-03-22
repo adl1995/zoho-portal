@@ -55,6 +55,7 @@ class ZohoController extends Controller
     
     public function call_zoho_api_add($module, $method, $record_id, $XML_data)
     {
+        return 'https://crm.zoho.com/crm/private/xml/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi&newFormat=1&id='.$record_id.'&xmlData='.$XML_data;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/xml/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi&newFormat=1&id='.$record_id.'&xmlData='.$XML_data);
 
@@ -155,6 +156,7 @@ class ZohoController extends Controller
         $contacts = $record['response']['result']['Contacts']['row'];
         $synced_contacts_count = count($contacts);
         $synced_contacts_times = [];
+
         foreach ($contacts as $contact) {
             foreach ($contact['FL'] as $contact_details) {
                 if ($contact_details['val'] == "Last Activity Time") {
@@ -175,7 +177,7 @@ class ZohoController extends Controller
 
         $user_activity_chart = Charts::create('pie', 'highcharts')
           ->title('User Activity Details')
-          ->labels(['Verified', 'Unverified'])
+          ->labels(['Active', 'Inactive'])
           ->values([$count_verified_emails, $count_unverified_emails])
           ->dimensions(1000,500)
           ->responsive(true);
@@ -204,8 +206,8 @@ class ZohoController extends Controller
     public function verify(Request $request)
     {
         $record = $this->call_zoho_api('Contacts', 'getRecords');
-        $record_id = $record['response']['result']['Contacts']['row']['FL'][0]['content'];
-        
+        $record_id = $record['response']['result']['Contacts']['row'][0]['FL'][0]['content'];
+
         $user = Auth::user();
         $response = $this->call_email_api($user->email);
         if (isset($response)) {

@@ -1,0 +1,70 @@
+@import "variable.less"; // Variable.less
+thead {
+    tr {
+        th {
+            color: @text;
+            font-weight: normal;
+//            font-family: @mol;
+            text-transform: uppercase;
+        }
+    }
+}
+
+tbody {
+    tr {
+        th {
+            color: @text;
+            font-family: @mol;
+            font-weight: normal;
+
+        }
+        td {
+            font-family: @mol;
+            color: @text-light;
+        }
+    }
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+//    border-top: 1px solid @border;
+//    padding: 8px;
+//    line-height: 32px;
+    vertical-align: top;
+}
+
+.table > thead > tr > th {
+    border-bottom: 1px solid @border;
+}
+
+.table {
+    .badge {
+        text-transform: uppercase;
+    }
+    .form-control {
+        height: 30px;
+        padding: 3px 6px;
+        max-width: 200px;
+        display: inline-block;
+    }
+    .control-label {
+        font-weight: bold;
+        margin-top: 4px;
+    }
+}
+
+.table-bordered {
+    border: 1px solid #ddd !important;
+}
+
+.table-responsive {
+    border: none !important;
+    padding: 0 0 10px 0;
+    >table {
+      margin-bottom: 20px !important;
+    }
+}

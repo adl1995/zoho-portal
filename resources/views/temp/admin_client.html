@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KDG Zoho Admin Panel | Client: {Client Name}</title>
+    <!-- ================= Favicon ================== -->
+      <link rel="shortcut icon" href="assets/images/favicon.ico">
+      <link rel="apple-touch-icon" href="assets/images/favicon.ico">
+  <!-- Styles -->
+    <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="assets/css/lib/mmc-chat.css" rel="stylesheet" />
+    <link href="assets/css/lib/lobipanel.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/sidebar.css" rel="stylesheet">
+    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/lib/unix.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+  </head>
+<body>
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano">
+            <div class="nano-content">
+                <ul>
+					          <li class="active"><a href="admin_dashboard.html"><i class="ti-user"></i>Clients</a></li>
+                    <li><a href="admin_errors.html"><i class="ti-alert"></i>Errors <span class="label label-danger">6 NEW</span><span class="badge">6</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- /# sidebar -->
+    <div class="header">
+        <div class="pull-left">
+            <div class="logo"><a href="index.html"><img src="assets/images/logo.png" alt="" /><span>Zoho Admin Panel</span></a></div>
+            <div class="hamburger sidebar-toggle">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+        <div class="pull-right p-r-15">
+            <ul>
+              <li class="header-icon dib"><span class="user-avatar"><span class="hidden-xs">Kyle David</span><span class="hidden-sm hidden-md hidden-lg"><i class="ti-user"></i></span> <i class="ti-angle-down f-s-10"></i></span>
+                  <div class="drop-down dropdown-profile">
+                      <div class="dropdown-content-body">
+                          <ul>
+                              <li><a href="#"><i class="ti-settings"></i> <span>Profile</span></a></li>
+                              <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row header-row">
+                    <div class="col-xs-12 col-sm-6 col-md-8 p-0">
+                        <div class="page-header">
+                            <ol class="breadcrumb">
+                              <li><a href="admin_dashboard.html">Clients</a></li>
+                              <li class="active">The Grape</li>
+                            </ol>
+                            <div class="page-title">
+                                <h1>The Grape <a href="admin_edit-client.html"><span class="ti-pencil"></span></a></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4 p-0">
+                      <div class="page-header">
+                          <div class="page-title text-right">
+                            <span class="dib m-t-10 m-r-5">Last Sync: 2/27/17 @ 8:35PM</span> <a data-toggle="modal" href="#sync-data" class="btn btn-sm btn-info m-t-6 m-b-6">SYNC DATA</a><br />
+                            <span class="dib m-r-5">Status:</span><span class="dib fw-light">Active</span>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="main-content">
+                  <div class="row">
+                    <div class="alert alert-success fade in alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <strong>Success!</strong> Indicates a successful or positive action.
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation" class="active"><a href="#client-errors" aria-controls="client-errors" role="tab" data-toggle="tab">Errors <span class="label label-danger">2 NEW</span></a></li>
+                      <li role="presentation"><a href="#client-list" aria-controls="client-list" role="tab" data-toggle="tab">List</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="client-errors">
+                        <div class="row">
+                          <label class="control-label col-sm-2 col-sm-offset-8 col-md-1 col-md-offset-9 hidden-xs text-right m-t-12 p-r-0">Show:</label>
+                          <div class="col-sm-2 hidden-xs">
+                            <select class="form-control">
+                              <option value="">10</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row m-0">
+              						<div class="col-xs-12 m-t-15 table-responsive">
+                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+          										<thead>
+          											<tr>
+          												<th>Timestamp</th>
+                                  <th>Error</th>
+          											</tr>
+          										</thead>
+          										<tbody>
+          											<tr>
+                                  <td>2/27/17 @ 8:35PM <span class="label label-danger">NEW</span></td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/27/17 @ 8:35PM <span class="label label-danger">NEW</span></td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/26/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/26/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/26/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/26/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/25/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/25/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/25/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+                                <tr>
+                                  <td>2/25/17 @ 8:35PM</td>
+          												<td>Unable to import 'David Berkheimer' from Contacts -- Missing lorem ipsum dolor sit amet.</td>
+          											</tr>
+          										</tbody>
+          									</table>
+              						</div>
+              					</div><!-- /# row -->
+                        <div class="row">
+                          <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers">
+                              <ul class="pagination m-t-0">
+                                <li class="paginate_button previous disabled"><a href="#">Previous</a></li>
+                                <li class="paginate_button active"><a href="#">1</a></li>
+                                <li class="paginate_button "><a href="#">2</a></li>
+                                <li class="paginate_button "><a href="#">3</a></li>
+                                <li class="paginate_button "><a href="#">...</a></li>
+                                <li class="paginate_button next"><a href="#">Next</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-sm-5 text-right">
+                            <div class="dataTables_info">Showing 1 to 10 of 45 entries</div>
+                          </div>
+                        </div><!-- /# row -->
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="client-list">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <input type="search" class="form-control input-rounded" placeholder="Search...">
+                          </div>
+                          <div class="col-sm-2 col-sm-offset-4 text-right p-r-0 hidden-xs">
+                            <label class="control-label m-t-10">Show:</label>
+                          </div>
+                          <div class="col-sm-2 hidden-xs">
+                            <select class="form-control">
+                              <option value="">10</option>
+                            </select>
+                          </div>
+              						<div class="col-xs-12 m-t-15">
+                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+          										<thead>
+          											<tr>
+          												<th>First Name</th>
+          												<th>Last Name</th>
+          												<th>Email</th>
+          												<th>Date Sync'd</th>
+                                  <th>Module</th>
+          											</tr>
+          										</thead>
+          										<tbody>
+          											<tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Contacts</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Leads</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Contacts</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Leads</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Contacts</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Leads</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Contacts</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Leads</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Contacts</td>
+          											</tr>
+                                <tr>
+          												<td>Matthew</td>
+          												<td>Hardwick</td>
+          												<td>email@gmail.com</td>
+          												<td>12/15/16 @ 2:35 PM</td>
+                                  <td>Leads</td>
+          											</tr>
+          										</tbody>
+          									</table>
+              						</div>
+              					</div><!-- /# row -->
+                        <div class="row">
+                          <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers">
+                              <ul class="pagination m-t-0">
+                                <li class="paginate_button previous disabled"><a href="#">Previous</a></li>
+                                <li class="paginate_button active"><a href="#">1</a></li>
+                                <li class="paginate_button "><a href="#">2</a></li>
+                                <li class="paginate_button "><a href="#">3</a></li>
+                                <li class="paginate_button "><a href="#">...</a></li>
+                                <li class="paginate_button next"><a href="#">Next</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-sm-5 text-right">
+                            <div class="dataTables_info">Showing 1 to 10 of 128 entries</div>
+                          </div>
+                        </div><!-- /# row -->
+                      </div>
+                    </div>
+                  </div>
+        				</div><!-- /# main content -->
+            </div><!-- /# container-fluid -->
+        </div><!-- /# main -->
+    </div><!-- /# content wrap -->
+
+    <!-- Modal -->
+    <div aria-hidden="true"  role="dialog" tabindex="-1" id="sync-data" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content text-left">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sync'ing Data</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Please wait while we sync your data. This may take a minute.</p>
+                  <div class="progress m-b-10">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">Syncing Data. Please wait.</div>
+                  </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <script src="assets/js/lib/jquery.min.js"></script><!-- jquery vendor -->
+    <script src="assets/js/lib/jquery.nanoscroller.min.js"></script><!-- nano scroller -->
+    <script src="assets/js/lib/sidebar.js"></script><!-- sidebar -->
+    <script src="assets/js/lib/bootstrap.min.js"></script><!-- bootstrap -->
+    <script src="assets/js/lib/mmc-common.js"></script>
+    <script src="assets/js/lib/weather/jquery.simpleWeather.min.js"></script>
+    <script src="assets/js/lib/weather/weather-init.js"></script>
+    <script src="assets/js/scripts.js"></script><!-- scripit init-->
+
+</body>
+
+</html>

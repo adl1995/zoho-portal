@@ -1,0 +1,162 @@
+/*    Font Variable
+----------------------*/
+/*    Color Variable
+-----------------------*/
+/*    Solid Color
+------------------*/
+/*    Brand color
+----------------------*/
+.btn-default {
+  background: #878787;
+  border-color: #878787;
+  color: #ffffff;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.active {
+  background: #6e6e6e;
+  border-color: #878787;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-primary {
+  background: #433654;
+  border-color: #433654;
+  color: #ffffff;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background: #2a2235 !important;
+  border-color: #433654 !important;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-success {
+  background: #87de75;
+  border-color: #87de75;
+  color: #ffffff;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success.active {
+  background: #63d44c;
+  border-color: #87de75;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-info {
+  background: #19a9d5;
+  border-color: #19a9d5;
+  color: #ffffff;
+}
+.btn-info:hover,
+.btn-info:focus,
+.btn-info.active {
+  background: #1485a7;
+  border-color: #19a9d5;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-warning {
+  background: #eeb043;
+  border-color: #eeb043;
+  color: #ffffff;
+}
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning.active {
+  background: #e99c15;
+  border-color: #eeb043;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-danger {
+  background: #ed7f7e;
+  border-color: #ed7f7e;
+  color: #ffffff;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger.active {
+  background: #e75351;
+  border-color: #ed7f7e;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-pink {
+  background: #e6a1f2;
+  border-color: #e6a1f2;
+  color: #ffffff;
+}
+.btn-pink:hover,
+.btn-pink:focus,
+.btn-pink.active {
+  background: #da74ec;
+  border-color: #e6a1f2;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-dark {
+  background: #252525;
+  border-color: #252525;
+  color: #ffffff;
+}
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark.active {
+  background: #0c0c0c;
+  border-color: #252525;
+  color: #ffffff;
+  box-shadow: none;
+}
+.btn-addon {
+  position: relative;
+  padding-left: 40px;
+}
+.btn-addon i {
+  background: rgba(0, 0, 0, 0.1);
+  left: -1px;
+  margin-right: 20px;
+  padding: 10px;
+  position: absolute;
+  top: -1px;
+}
+.btn-addon.btn-lg {
+  padding-left: 60px;
+}
+.btn-addon.btn-lg i {
+  padding: 14px;
+}
+.btn-addon.btn-md {
+  padding-left: 45px;
+}
+.btn-addon.btn-md i {
+  padding: 10px;
+}
+.btn-addon.btn-sm {
+  padding-left: 40px;
+}
+.btn-addon.btn-sm i {
+  padding: 9px;
+}
+.btn-addon.btn-xs {
+  padding-left: 25px;
+}
+.btn-addon.btn-xs i {
+  padding: 5px;
+}
+.btn-rounded {
+  border-radius: 100px;
+}
+.btn-outline {
+  background: transparent;
+  color: #878787;
+}
+.btn-flat {
+  border-radius: 0px;
+}
+.btn-filter-row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -93,7 +93,7 @@ class RegisterController extends Controller
                 $m->from('mail@zoho.net', 'Zoho');
                 $m->to($user->email, $user->first_name)->subject('Zoho Portal - Verfiy your account');
             });
-            Session::flash('status', 'Email sent! Please verify your account');
+            Session::flash('status', 'Email sent! Please verify your account.');
         }
         return $user;
     }

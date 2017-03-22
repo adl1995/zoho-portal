@@ -27,11 +27,11 @@
                 <div class="login-form">
                   <div class="login-tab custom-tab">
                       <ul class="nav nav-tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">LOG IN</a></li>
-                          <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">SIGN UP</a></li>
+                          <li role="presentation" class="{{ $tab == 'login' ? 'active' : '' }}"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">LOG IN</a></li>
+                          <li role="presentation" class="{{ $tab == 'register' ? 'active' : '' }}"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">SIGN UP</a></li>
                       </ul>
                       <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane active" id="login">
+                      <div role="tabpanel" class="tab-pane {{ $tab == 'login' ? 'active' : '' }}" id="login">
                     	<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         	{{ csrf_field() }}
                               <div class="form-group">
@@ -58,7 +58,7 @@
                               <button type="submit" class="btn btn-primary btn-flat m-b-15">Log in</button>
                             </form>
                           </div>
-                          <div role="tabpanel" class="tab-pane" id="register">
+                          <div role="tabpanel" class="tab-pane {{ $tab == 'register' ? 'active' : '' }}" id="register">
 	                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
 	                        {{ csrf_field() }}
                               <div class="form-group">

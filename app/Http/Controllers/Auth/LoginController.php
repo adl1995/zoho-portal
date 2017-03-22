@@ -87,7 +87,8 @@ class LoginController extends Controller
             'WY'=>'Wyoming', 
         );
         
-        return view('auth.login', compact('states'));
+        $tab = 'login';
+        return view('auth.login', compact('states', 'tab'));
     }
 
     /**

@@ -1,39 +1,38 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Zoho Portal') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/table.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/jquery-3.1.1.js') }}"></script>
-    <style type="text/css" media="screen">
-     /**
-     * Footer Styles
-     */
-    .footer {
-        padding: 1rem;
-        background-color: #efefef;
-        text-align: center;
-    }   
-    </style>
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ config('app.name', 'KDG Zoho Admin Panel | API Key') }}</title>
+        <!-- ================= Favicon ================== -->
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="apple-touch-icon" href="images/favicon.ico">
+        <!-- Styles -->
+        <link href="css/lib/font-awesome.min.css" rel="stylesheet">
+        <link href="css/lib/themify-icons.css" rel="stylesheet">
+        <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+        <link href="css/lib/unix.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <style type="text/css" media="screen">
+         /**
+         * Footer Styles
+         */
+        .footer {
+            padding: 1rem;
+            background-color: #261b4b;
+            text-align: center;
+        }   
+        </style>
+        <!-- Scripts -->
+        <script>
+            window.Laravel = {!! json_encode([
+                'csrfToken' => csrf_token(),
+            ]) !!};
+        </script>
+    </head>
+    <body class="bg-primary">
+            <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -104,17 +103,33 @@
                 </div>
             </div>
         </nav>
+
         @if (isset($error))
             <div class="text-center">
-                <h1>{{ $error }}</h1>
+            <div class="text-info">
+                <h3>{{ $error }}</h13
+            </div>
             </div>
         @endif
+
+        <div class="unix-login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <div class="login-content">
+                            <div class="login-logo">
+                                <a href="index.html"><img alt="KDG" src="images/logo.png"><span>Zoho Admin Portal</span></a>
+                            </div>
         @yield('content')
 
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <br/><br/><br/>
-    <footer class="footer navbar-fixed-bottom"> Zoho Portal - 2017</footer>    
+    <footer class="footer navbar-fixed-bottom">Zoho Portal - 2017</footer>    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

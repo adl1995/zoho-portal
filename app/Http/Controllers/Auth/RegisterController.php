@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use Mail;
-use Request;
 use Session;
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,7 +51,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $validator = Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'address1' => 'required|string|max:255',
@@ -61,6 +61,48 @@ class RegisterController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => array('required','min:6','confirmed','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'),
         ]);
+
+        if ($validator->fails()) {
+            return redirect('/login')
+                ->withErrors($validator)
+                ->withInput();
+        }
+    }
+
+    protected function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'address1' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'zip' => 'required|numeric',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => array('required','min:6','confirmed','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'),
+        ]);
+        $request->session()->flush();
+        $request->session()->flash('tab', ['register']);
+        // return    \Session::pull('tab', 'default');
+        if ($validator->fails()) {
+            return redirect('login')
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('tab', ['register']);
+        }
+
+        // Store the blog post...
+    }
+
+    /**
+     * Show the registration form.
+     *
+     * @param  array  $data
+     * @return User
+     */
+    protected function showRegistrationForm() {
+        $tab = 'register';
+        return view('auth.login', 'tab');
     }
 
     /**
@@ -111,4 +153,5 @@ class RegisterController extends Controller
         
         return redirect('home');
     }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Session;
 
 class LoginController extends Controller
 {
@@ -32,6 +33,7 @@ class LoginController extends Controller
      *
      * @return void
      */
+    
     public function showLoginForm() {
         $states = array(
             'AL'=>'Alabama',
@@ -86,8 +88,10 @@ class LoginController extends Controller
             'WI'=>'Wisconsin',
             'WY'=>'Wyoming', 
         );
-        
+        // @todo: fix tab view
         $tab = 'login';
+        \Session::flash('tab', ['login']);
+
         return view('auth.login', compact('states', 'tab'));
     }
 

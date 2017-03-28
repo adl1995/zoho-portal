@@ -6,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name', 'KDG Zoho Admin Panel | API Key') }}</title>
         <!-- ================= Favicon ================== -->
-        <link rel="shortcut icon" href="images/favicon.ico">
-        <link rel="apple-touch-icon" href="images/favicon.ico">
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+        <link rel="apple-touch-icon" href="{{ asset('images/favicon.ico') }}">
         <!-- Styles -->
-        <link href="css/lib/font-awesome.min.css" rel="stylesheet">
-        <link href="css/lib/themify-icons.css" rel="stylesheet">
-        <link href="css/lib/bootstrap.min.css" rel="stylesheet">
-        <link href="css/lib/unix.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="{{ asset('css/lib/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/lib/themify-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/lib/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/lib/unix.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <style type="text/css" media="screen">
          /**
          * Footer Styles

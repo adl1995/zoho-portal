@@ -140,83 +140,30 @@
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                               <thead>
                                 <tr>
-                                  <th>First Name</th>
+                                  <!-- <th>First Name</th>
                                   <th>Last Name</th>
                                   <th>Email</th>
                                   <th>Date Sync'd</th>
-                                  <th>Module</th>
+                                  <th>Module</th> -->
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>E-mail</th>
+                                  <th>Company</th>
+                                  <th>City</th>
+                                  <th>Verified</th>
                                 </tr>
                               </thead>
                               <tbody>
+                              @foreach($users as $key=>$user)
                                 <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Contacts</td>
+                                  <td>{{ $user['id'] }}</td>
+                                  <td>{{ $user['first_name'] }} {{ $user['last_name'] }}</td>
+                                  <td>{{ $user['email'] }}</td>
+                                  <td>{{ $user['company'] }}</td>
+                                  <td>{{ $user['city'] }}</td>
+                                  <td>{{ $user['is_verified'] }}</td>
                                 </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Leads</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Contacts</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Leads</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Contacts</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Leads</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Contacts</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Leads</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Contacts</td>
-                                </tr>
-                                <tr>
-                                  <td>Matthew</td>
-                                  <td>Hardwick</td>
-                                  <td>email@gmail.com</td>
-                                  <td>12/15/16 @ 2:35 PM</td>
-                                  <td>Leads</td>
+                              @endforeach
                                 </tr>
                               </tbody>
                             </table>

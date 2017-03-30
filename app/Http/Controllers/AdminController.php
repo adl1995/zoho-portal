@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\ZohoModuleField;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -25,6 +26,7 @@ class AdminController extends Controller
      */
     public function listClients()
     {
+        // @todo: grab errors
     	$users = User::where('is_admin', 0)->get();
     	return view('admin.clients', compact('users'));
     }
@@ -38,6 +40,17 @@ class AdminController extends Controller
     {
         $user = User::find($id);
         return view('admin.client-details', compact('user'));
+    }
+
+    /**
+     * Edit a client
+     *
+     * @return void
+     */
+    public function editClient($id)
+    {
+        $user = Auth::User();
+        return view('admin.client-edit', compact('user'));
     }
 
     /**

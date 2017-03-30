@@ -40,7 +40,7 @@
         </div>
         <div class="pull-right p-r-15">
             <ul>
-              <li class="header-icon dib"><span class="user-avatar"><span class="hidden-xs">Kyle David</span><span class="hidden-sm hidden-md hidden-lg"><i class="ti-user"></i></span> <i class="ti-angle-down f-s-10"></i></span>
+              <li class="header-icon dib"><span class="user-avatar"><span class="hidden-xs">{{ Auth::user()->first_name }}</span><span class="hidden-sm hidden-md hidden-lg"><i class="ti-user"></i></span> <i class="ti-angle-down f-s-10"></i></span>
                   <div class="drop-down dropdown-profile">
                       <div class="dropdown-content-body">
                           <ul>

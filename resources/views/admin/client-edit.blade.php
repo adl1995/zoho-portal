@@ -13,46 +13,55 @@
                               <li class="active">Edit</li>
                             </ol>
                             <div class="page-title">
-                                <h1>Edit Client: The Grape</h1>
+                                <h1>Edit Client: {{ $user['first_name'] }}</h1>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="main-content">
                   <div class="row">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="POST" action="/clients/{{ $user['id'] }}/update">
+                	{{ csrf_field() }}
                       <div class="form-group">
                         <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">Company</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" placeholder="Company Name" value="The Grape">
+                          <input type="text" name="company" class="form-control" placeholder="Company Name" value="{{ $user['company'] }}">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">First Name</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" placeholder="First Name" value="Matt">
+                          <input type="text" name="first_name" class="form-control" placeholder="First Name" value="{{ $user['first_name'] }}">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">Last Name</label>
                         <div class="col-sm-8">
-                          <input type="text" class="form-control" placeholder="Last Name" value="Hartstick">
+                          <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="{{ $user['last_name'] }}">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">Email</label>
                         <div class="col-sm-8">
-                          <input type="email" class="form-control" placeholder="Email Address" value="email@domain.com">
+                          <input type="email" name="email" class="form-control" placeholder="Email Address" value="{{ $user['email'] }}">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">Status</label>
                         <div class="col-sm-8">
                           <label class="radio-inline tt-none fw-light">
-                            <input type="radio" name="status" id="statusActive" value="active" checked="checked"> Active
+                          	@if ($user['is_suspended'] == 1)
+                            	<input name="active" type="radio" name="status" id="statusActive" value="active" checked="checked"> Active
+                            @else
+                            	<input name="active" type="radio" name="status" id="statusActive" value="active"> Active
+                            @endif
                           </label>
                           <label class="radio-inline tt-none fw-light">
-                            <input type="radio" name="status" id="statusInactive" value="inactive"> Inactive
+                          	@if ($user['is_suspended'] == 0)
+                            	<input name="inactive" type="radio" name="status" id="statusInactive" value="inactive" checked="checked"> Inactive
+                            @else
+                            	<input name="inactive" type="radio" name="status" id="statusActive" value="active"> Active
+                            @endif
                           </label>
                         </div>
                       </div>

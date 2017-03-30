@@ -43,13 +43,37 @@ class AdminController extends Controller
     }
 
     /**
-     * Edit a client
+     * Edit a client by id
      *
      * @return void
      */
     public function editClient($id)
     {
-        $user = Auth::User();
+        $user = User::find($id);
+        return view('admin.client-edit', compact('user'));
+    }
+
+    /**
+     * Update a client
+     *
+     * @return void
+     */
+    public function updateClient($id, Request $request)
+    {
+        // return $request->all();
+        $user = User::find($id);
+        
+        $user->company = $request->input('company');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->email = $request->input('email');
+        // fixme
+        if (isset($request->input('active')))
+            $user->is_suspended = 1;
+        else
+            $user->is_suspended = 0;
+
+        $user->save();
         return view('admin.client-edit', compact('user'));
     }
 

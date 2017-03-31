@@ -23,11 +23,11 @@ Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
 Route::group(['middleware' => ['auth', 'admin']], function () {
 	Route::group(['prefix' => 'admin'], function() {
 		Route::get('/', 'AdminController@index');
+		Route::get('/profile', 'AdminController@profile');
 		Route::get('/errors', 'AdminController@errorLog');
 		Route::get('clients', 'AdminController@listClients');
 		Route::get('clients/add', 'AdminController@addClient');
 		Route::post('clients/add', 'AdminController@createClient');
-		Route::get('clients/{id}', 'AdminController@listClientsDetails');
 		Route::get('clients/{id}/edit', 'AdminController@editClient');
 		Route::post('clients/{id}/update', 'AdminController@updateClient');
 		Route::post('clients/{id}/verify', 'AdminController@verifyClient');

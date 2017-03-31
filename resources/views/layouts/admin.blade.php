@@ -23,8 +23,8 @@
         <div class="nano">
             <div class="nano-content">
                 <ul>
-					          <li class="active"><a href="admin_dashboard.html"><i class="ti-user"></i>Clients</a></li>
-                    <li><a href="admin_errors.html"><i class="ti-alert"></i>Errors <span class="label label-danger">6 NEW</span><span class="badge">6</span></a></li>
+					          <li class="active"><a href="/admin"><i class="ti-user"></i>Clients</a></li>
+                    <li><a href="/admin/errors"><i class="ti-alert"></i>Errors <span class="label label-danger">6 NEW</span><span class="badge">6</span></a></li>
                 </ul>
             </div>
         </div>
@@ -44,7 +44,7 @@
                   <div class="drop-down dropdown-profile">
                       <div class="dropdown-content-body">
                           <ul>
-                              <li><a href="#"><i class="ti-settings"></i> <span>Profile</span></a></li>
+                              <li><a href="/admin/profile"><i class="ti-settings"></i> <span>Profile</span></a></li>
                               <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
                           </ul>
                       </div>

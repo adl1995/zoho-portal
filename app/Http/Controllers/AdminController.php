@@ -112,13 +112,13 @@ class AdminController extends Controller
     }
 
     /**
-     * List a client's details
+     * Show admin profile
      *
      * @return void
      */
-    public function listClientsDetails($id)
+    public function profile()
     {
-        $user = User::find($id);
+        $user = Auth::user();
         return view('admin.client-details', compact('user'));
     }
 

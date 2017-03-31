@@ -140,16 +140,13 @@
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                               <thead>
                                 <tr>
-                                  <th>Last Name</th>
-                                  <th>Email</th>
-                                  <th>Date Sync'd</th>
-                                  <th>Module</th> -->
                                   <th>ID</th>
                                   <th>Name</th>
                                   <th>E-mail</th>
                                   <th>Company</th>
                                   <th>City</th>
                                   <th>Verified</th>
+                                  <th></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -161,6 +158,7 @@
                                   <td>{{ $user['company'] }}</td>
                                   <td>{{ $user['city'] }}</td>
                                   <td>{{ $user['is_verified'] }}</td>
+                                  <td><a href="/clients/{{ $user['id'] }}/edit">Edit</a></td>
                                 </tr>
                               @endforeach
                                 </tr>

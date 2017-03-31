@@ -51,16 +51,16 @@
                         <div class="col-sm-8">
                           <label class="radio-inline tt-none fw-light">
                           	@if ($user['is_suspended'] == 1)
-                            	<input name="active" type="radio" name="status" id="statusActive" value="active" checked="checked"> Active
+                            	<input name="active" type="radio" id="statusActive" value="active" checked="checked"> Active
                             @else
-                            	<input name="active" type="radio" name="status" id="statusActive" value="active"> Active
+                            	<input name="active" type="radio" id="statusActive" value="active"> Active
                             @endif
                           </label>
                           <label class="radio-inline tt-none fw-light">
                           	@if ($user['is_suspended'] == 0)
-                            	<input name="inactive" type="radio" name="status" id="statusInactive" value="inactive" checked="checked"> Inactive
+                            	<input name="active" type="radio" id="statusInactive" value="inactive" checked="checked"> Inactive
                             @else
-                            	<input name="inactive" type="radio" name="status" id="statusActive" value="active"> Active
+                            	<input name="active" type="radio" id="statusActive" value="inactive"> Inactive
                             @endif
                           </label>
                         </div>

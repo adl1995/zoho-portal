@@ -60,21 +60,22 @@ class AdminController extends Controller
      */
     public function updateClient($id, Request $request)
     {
-        // return $request->all();
         $user = User::find($id);
         
         $user->company = $request->input('company');
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
-        // fixme
-        if (isset($request->input('active')))
+
+        if ($request->input('active') == 'active')
             $user->is_suspended = 1;
         else
             $user->is_suspended = 0;
 
         $user->save();
-        return view('admin.client-edit', compact('user'));
+        return redirect()->action(
+            'AdminController@editClient', ['id' => $id]
+        );
     }
 
     /**

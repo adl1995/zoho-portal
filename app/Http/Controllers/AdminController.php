@@ -42,6 +42,16 @@ class AdminController extends Controller
     }
 
     /**
+     * Show error log
+     *
+     * @return view
+     */
+    public function errorLog()
+    {
+        return view('admin.error-log');
+    }
+
+    /**
      * Add a client in the database
      *
      * @return view

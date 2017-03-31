@@ -17,18 +17,23 @@ Route::resource('home', 'HomeController');
 Auth::routes();
 
 Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
-    return "testing Admin";
+	return 'admin';
 }]);
 
+Route::group(['middleware' => ['auth', 'admin']], function () {
+	Route::group(['prefix' => 'admin'], function() {
+		Route::get('clients', 'AdminController@listClients');
+		Route::get('clients/{id}', 'AdminController@listClientsDetails');
+		Route::get('clients/{id}/edit', 'AdminController@editClient');
+		Route::post('clients/{id}/update', 'AdminController@updateClient');
+		Route::post('clients/{id}/verify', 'AdminController@verifyClient');
+		Route::post('clients/{id}/suspend', 'AdminController@suspendClient');
+		Route::post('clients/{id}/reactivate', 'AdminController@reactivateClient');
+		Route::post('clients/{id}/sync', 'AdminController@syncClient');
+	});
+});
+
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('clients', 'AdminController@listClients');
-	Route::get('clients/{id}', 'AdminController@listClientsDetails');
-	Route::get('clients/{id}/edit', 'AdminController@editClient');
-	Route::post('clients/{id}/update', 'AdminController@updateClient');
-	Route::post('clients/{id}/verify', 'AdminController@verifyClient');
-	Route::post('clients/{id}/suspend', 'AdminController@suspendClient');
-	Route::post('clients/{id}/reactivate', 'AdminController@reactivateClient');
-	Route::post('clients/{id}/sync', 'AdminController@syncClient');
 	Route::post('/error_log', 'AdminController@errorLog');
 	Route::post('/{id}/sync', 'AdminController@syncClient');
 });

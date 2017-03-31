@@ -52,7 +52,11 @@ class AdminController extends Controller
             'company' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|unique:users|string|max:255',
+            'address1' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'zip' => 'required|integer',
             'status' => 'required',
         ]);
 
@@ -62,7 +66,27 @@ class AdminController extends Controller
                 ->withInput();
         }
 
-        return $request->all();
+        $client = new User;
+
+        $client->first_name = $request->input('first_name');
+        $client->last_name = $request->input('last_name');
+        $client->company = $request->input('company');
+        $client->email = $request->input('email');
+        $client->address1 = $request->input('address1');
+        $client->city = $request->input('city');
+        $client->state = $request->input('state');
+        $client->zip = $request->input('zip');
+        $client->verify_key = '123456';
+        $client->password = bcrypt('123456');
+
+        if ($request->input('status') == 'active')
+            $client->is_suspended = 1;
+        else
+            $client->is_suspended = 0;
+
+        $client->save();
+
+        return redirect('/admin');
     }
 
     /**

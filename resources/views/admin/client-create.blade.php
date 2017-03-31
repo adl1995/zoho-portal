@@ -67,6 +67,50 @@
                         </div>
                       </div>
                       <div class="form-group">
+                        <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">City</label>
+                        <div class="col-sm-8">
+                          <input name="city" type="text" class="form-control" placeholder="City">
+	                        @if ($errors->has('city'))
+	                            <span class="help-block">
+	                                <strong>{{ $errors->first('city') }}</strong>
+	                            </span>
+	                        @endif
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">State</label>
+                        <div class="col-sm-8">
+                          <input name="state" type="text" class="form-control" placeholder="State">
+	                        @if ($errors->has('state'))
+	                            <span class="help-block">
+	                                <strong>{{ $errors->first('state') }}</strong>
+	                            </span>
+	                        @endif
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">Address</label>
+                        <div class="col-sm-8">
+                          <input name="address1" type="text" class="form-control" placeholder="Address">
+	                        @if ($errors->has('address1'))
+	                            <span class="help-block">
+	                                <strong>{{ $errors->first('address1') }}</strong>
+	                            </span>
+	                        @endif
+                        </div>
+                     </div>
+                      <div class="form-group">
+                        <label for="" class="col-sm-4 col-md-3 col-lg-2 control-label">ZIP</label>
+                        <div class="col-sm-8">
+                          <input name="zip" type="text" class="form-control" placeholder="ZIP">
+	                        @if ($errors->has('zip'))
+	                            <span class="help-block">
+	                                <strong>{{ $errors->first('zip') }}</strong>
+	                            </span>
+	                        @endif
+                        </div>
+                      </div>
+                      <div class="form-group">
                         <label name="status" for="" class="col-sm-4 col-md-3 col-lg-2 control-label">Status</label>
                         <div class="col-sm-8">
                           <label class="radio-inline tt-none fw-light">

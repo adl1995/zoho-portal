@@ -20,6 +20,17 @@ class AdminController extends Controller
     }
 
     /**
+     * Show the admin dashboard
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.home', compact('users'));
+    }
+
+    /**
      * List all registered clients
      *
      * @return void

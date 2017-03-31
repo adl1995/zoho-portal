@@ -158,7 +158,7 @@
                                   <td>{{ $user['company'] }}</td>
                                   <td>{{ $user['city'] }}</td>
                                   <td>{{ $user['is_verified'] }}</td>
-                                  <td><a href="/clients/{{ $user['id'] }}/edit">Edit</a></td>
+                                  <td><a href="/admin/clients/{{ $user['id'] }}/edit">Edit</a></td>
                                 </tr>
                               @endforeach
                                 </tr>

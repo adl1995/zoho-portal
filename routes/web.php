@@ -22,6 +22,7 @@ Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
 	Route::group(['prefix' => 'admin'], function() {
+		Route::get('/', 'AdminController@index');
 		Route::get('clients', 'AdminController@listClients');
 		Route::get('clients/{id}', 'AdminController@listClientsDetails');
 		Route::get('clients/{id}/edit', 'AdminController@editClient');

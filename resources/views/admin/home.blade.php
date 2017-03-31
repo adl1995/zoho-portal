@@ -15,7 +15,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 p-0">
                         <div class="page-header">
                             <div class="page-title text-right">
-                                <a data-toggle="modal" href="#sync-data" class="btn btn-sm btn-info m-t-6 m-b-6">ADD CLIENT</a>
+                                <a href="/admin/clients/add" class="btn btn-sm btn-info m-t-6 m-b-6">ADD CLIENT</a>
                             </div>
                         </div>
                     </div>

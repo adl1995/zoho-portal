@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\ZohoModuleField;
+use Validator;
 use Auth;
 
 class AdminController extends Controller
@@ -28,6 +29,40 @@ class AdminController extends Controller
     {
         $users = User::all();
         return view('admin.home', compact('users'));
+    }
+
+    /**
+     * Add a client
+     *
+     * @return view
+     */
+    public function addClient()
+    {
+        return view('admin.client-create');
+    }
+
+    /**
+     * Add a client in the database
+     *
+     * @return view
+     */
+    public function createClient(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'company' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'status' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/admin/clients/add')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        return $request->all();
     }
 
     /**
@@ -71,6 +106,20 @@ class AdminController extends Controller
      */
     public function updateClient($id, Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'company' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'status' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/admin/clients/'.$id.'/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $user = User::find($id);
         
         $user->company = $request->input('company');

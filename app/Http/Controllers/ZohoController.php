@@ -194,7 +194,7 @@ class ZohoController extends Controller
     
     public function integrations()
     {
-        return view('zoho.integrations');
+        return view('zoho.integrations-new');
     }
 
     /**

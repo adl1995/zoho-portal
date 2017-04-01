@@ -115,6 +115,7 @@ class ZohoController extends Controller
     
     public function fields($module)
     {
+        return view('zoho.config');
         $response = $this->call_zoho_api($module, 'getFields');
         if (isset($response[$module]['section'])) {
             $rows = $response[$module]['section'][0]['FL'];

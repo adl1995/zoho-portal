@@ -152,6 +152,9 @@ class ZohoController extends Controller
     
     public function home(Request $request)
     {
+        $synced_data = ZohoModuleField::all();
+        return view('zoho.dashboard-new', compact('synced_data'));
+
         $record = $this->call_zoho_api('Contacts', 'getRecords');
         $contacts = $record['response']['result']['Contacts']['row'];
         $synced_contacts_count = count($contacts);
@@ -194,7 +197,7 @@ class ZohoController extends Controller
     
     public function integrations()
     {
-        return view('zoho.integrations-new');
+        return view('zoho.integrations');
     }
 
     /**

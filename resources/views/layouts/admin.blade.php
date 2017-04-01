@@ -23,7 +23,14 @@
         <div class="nano">
             <div class="nano-content">
                 <ul>
-					          <li class="active"><a href="/admin"><i class="ti-user"></i>Clients</a></li>
+                    <li class="active"><a href="/admin"><i class="ti-user"></i>Home</a></li>
+                    @if (isset(Auth::user()->is_admin))
+                        @if (Auth::user()->is_admin == 1)
+                          <li><a href="{{ url('/admin/clients') }}"><i class="ti-user"></i>List Clients</a></li>
+                          <li><a href="{{ url('/admin/clients/add') }}"><i class="ti-user"></i>Add Client</a></li>
+                        </a>
+                        @endif
+                    @endif
                     <li><a href="/admin/errors"><i class="ti-alert"></i>Errors <span class="label label-danger">6 NEW</span><span class="badge">6</span></a></li>
                 </ul>
             </div>

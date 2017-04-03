@@ -27,6 +27,8 @@ class AdminController extends Controller
      */
     public function index()
     {
+        \Session::flash('tab', ['home']);
+
         $users = User::all();
         return view('admin.home', compact('users'));
     }
@@ -38,6 +40,8 @@ class AdminController extends Controller
      */
     public function addClient()
     {
+        \Session::flash('tab', ['add-clients']);
+
         return view('admin.client-create');
     }
 
@@ -48,6 +52,8 @@ class AdminController extends Controller
      */
     public function errorLog()
     {
+        \Session::flash('tab', ['errors']);
+
         return view('admin.error-log');
     }
 
@@ -107,6 +113,8 @@ class AdminController extends Controller
     public function listClients()
     {
         // @todo: grab errors
+        \Session::flash('tab', ['list-clients']);
+
     	$users = User::where('is_admin', 0)->get();
     	return view('admin.clients', compact('users'));
     }

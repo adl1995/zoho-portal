@@ -91,7 +91,7 @@ class LoginController extends Controller
         // @todo: fix tab view
         $tab = 'login';
         \Session::flash('tab', ['login']);
-
+        
         return view('auth.login', compact('states', 'tab'));
     }
 

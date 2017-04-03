@@ -62,7 +62,7 @@
                             </form>
                           </div>
                           <div role="tabpanel" class="tab-pane {{ session('tab')[0] == 'register' ? 'active' : '' }}" id="register">  
-	                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                      <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
 	                        {{ csrf_field() }}
                               <div class="form-group">
                                 <label>Full Name *</label>

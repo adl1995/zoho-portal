@@ -60,7 +60,7 @@
                             |
                         </a>
                         <a class="navbar-brand" href="{{ url('clients') }}">
-                            List clients
+                            Current client
                         </a>
                         @endif
                     @endif

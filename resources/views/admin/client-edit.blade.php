@@ -8,8 +8,8 @@
                     <div class="col-xs-12 p-0">
                         <div class="page-header">
                             <ol class="breadcrumb">
-                              <li><a href="admin_dashboard.html">Clients</a></li>
-                              <li><a href="admin_client.html">The Grape</a></li>
+                              <li><a href="/admin">Clients</a></li>
+                              <li><a href="/admin/clients">{{ $user['first_name'] }}</a></li>
                               <li class="active">Edit</li>
                             </ol>
                             <div class="page-title">

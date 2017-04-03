@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 		Route::get('/', 'AdminController@index');
 		Route::get('/profile', 'AdminController@profile');
 		Route::get('/errors', 'AdminController@errorLog');
-		Route::get('clients', 'AdminController@listClients');
+		Route::get('clients', 'AdminController@currentClient');
 		Route::get('clients/add', 'AdminController@addClient');
 		Route::post('clients/add', 'AdminController@createClient');
 		Route::get('clients/{id}/edit', 'AdminController@editClient');

@@ -26,7 +26,7 @@
                     <li class="{{ session('tab')[0] == 'home' ? 'active' : '' }}"><a href="/admin"><i class="ti-user"></i>Home</a></li>
                     @if (isset(Auth::user()->is_admin))
                         @if (Auth::user()->is_admin == 1)
-                          <li class="{{ session('tab')[0] == 'list-clients' ? 'active' : '' }}"><a href="{{ url('/admin/clients') }}"><i class="ti-user"></i>List Clients</a></li>
+                          <li class="{{ session('tab')[0] == 'list-clients' ? 'active' : '' }}"><a href="{{ url('/admin/clients') }}"><i class="ti-user"></i>Current Client</a></li>
                           <li class="{{ session('tab')[0] == 'add-clients' ? 'active' : '' }}"><a href="{{ url('/admin/clients/add') }}"><i class="ti-user"></i>Add Client</a></li>
                         </a>
                         @endif

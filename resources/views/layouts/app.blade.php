@@ -59,8 +59,8 @@
                         <a class="navbar-brand" href="#">
                             |
                         </a>
-                        <a class="navbar-brand" href="{{ url('clients') }}">
-                            Current client
+                        <a class="navbar-brand" href="{{ url('/admin/clients') }}">
+                            List clients
                         </a>
                         @endif
                     @endif
@@ -118,7 +118,7 @@
                     <div class="col-lg-6 col-lg-offset-3">
                         <div class="login-content">
                             <div class="login-logo">
-                                <a href="index.html"><img alt="KDG" src="images/logo.png"><span>Zoho Admin Portal</span></a>
+                                <a href="/"><img alt="KDG" src="images/logo.png"><span>Zoho Admin Portal</span></a>
                             </div>
         @yield('content')
 

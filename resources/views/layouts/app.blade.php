@@ -121,7 +121,6 @@
                                 <a href="/"><img alt="KDG" src="images/logo.png"><span>Zoho Admin Portal</span></a>
                             </div>
         @yield('content')
-
                     </div>
                 </div>
             </div>
@@ -129,7 +128,7 @@
     </div>
 
     <br/><br/><br/>
-    <footer class="footer navbar-fixed-bottom">Zoho Portal - 2017</footer>    
+    <footer class="footer navbar-fixed-bottom">@Zoho Portal - 2017</footer>    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

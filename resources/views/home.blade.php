@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-                <div class="login-form">
+            <div class="login-form">
                   <form action="{{ route('home.store') }}" method="POST" accept-charset="utf-8">
       	          {{ csrf_field() }}
 	                <h4>Zoho Configuration</h4>

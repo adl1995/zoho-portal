@@ -55,18 +55,15 @@ class ZohoController extends Controller
     
     public function call_zoho_api_add($module, $method, $record_id, $XML_data)
     {
-        return 'https://crm.zoho.com/crm/private/xml/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi&newFormat=1&id='.$record_id.'&xmlData='.$XML_data;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://crm.zoho.com/crm/private/xml/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi&newFormat=1&id='.$record_id.'&xmlData='.$XML_data);
-
+        $url = 'https://crm.zoho.com/crm/private/xml/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi&newFormat=1&id='.$record_id.'&xmlData='.$XML_data;
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, '50');
-
-        $content = curl_exec($ch);
+        $data = curl_exec($ch);
         curl_close($ch);
-
-        dd($content);
-        return json_decode($content, TRUE);
+        echo $data;
     }    
 
     /**
@@ -136,7 +133,6 @@ class ZohoController extends Controller
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://crm.zoho.com/crm/private/xml/Leads/getSearchRecordsByPDC?authtoken=". config('app.ZOHO_KEY') ."&scope=crmapi");
-
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, '50');
 
@@ -211,7 +207,7 @@ class ZohoController extends Controller
     {
         $record = $this->call_zoho_api('Contacts', 'getRecords');
         $record_id = $record['response']['result']['Contacts']['row'][0]['FL'][0]['content'];
-
+        
         $user = Auth::user();
         $response = $this->call_email_api($user->email);
         if (isset($response)) {
@@ -220,23 +216,12 @@ class ZohoController extends Controller
             }
             elseif ($response['status'] == 'failed') {
                 $user->email_verified = 0;
-                // @todo: fix API call
                 if ($request->input('opt_out_fail')) {
-                    $xml = "
-                        <Contacts>
-                        <row no=\"1\">
-                        <FL val=\"Email Opt Out\">true</FL>
-                        </row>
-                        </Contacts>";
+                    $xml = "%20%3CContacts%3E%20%3Crow%20no=%221%22%3E%20%3CFL%20val=%22Email%20Opt%20Out%22%3Etrue%3C/FL%3E%20%3C/row%3E%20%3C/Contacts%3E";
                     return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, htmlspecialchars($xml));
                 }
                 if ($request->input('add_note_fail')) {
-                    $xml = "
-                        <Contacts>
-                        <row no=\"1\">
-                        <FL val=\"Description\">This email failed validation</FL>
-                        </row>
-                        </Contacts>";
+                    $xml = '%3CContacts%3E%20%3Crow%20no=%221%22%3E%20%3CFL%20val=%22Description%22%3EThis%20email%20failed%20validation%3C/FL%3E%20%3C/row%3E%20%3C/Contacts%3E';
                     return $this->call_zoho_api_add('Contacts', 'updateRecords', $record_id, htmlspecialchars($xml));
                 }
             }

@@ -210,6 +210,7 @@ class ZohoController extends Controller
         
         $user = Auth::user();
         $response = $this->call_email_api($user->email);
+        // @todo: transform to POST request
         if (isset($response)) {
             if ($response['status'] == 'passed') {
                 $user->email_verified = 1;

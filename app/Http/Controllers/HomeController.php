@@ -59,7 +59,6 @@ class HomeController extends Controller
             if (isset($request->zoho_key))
             $key = ZohoKey::create(['zoho_key' => $request->zoho_key, 'user_id' => Auth::user()->id]);
         
-        // @todo: redirect to proper view
         return view('home');
     }
 }

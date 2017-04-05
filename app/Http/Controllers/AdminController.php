@@ -112,10 +112,8 @@ class AdminController extends Controller
      */
     public function currentClient()
     {
-        // @todo: grab errors
         \Session::flash('tab', ['list-clients']);
 
-        // $users = User::where('is_admin', 0)->get();
     	$user = Auth::user();
     	return view('admin.clients', compact('user'));
     }

@@ -127,28 +127,28 @@
 	<br/><br/>
 	<div class="text-center">
 		<div class="col-md-3">
-			<form action="/clients/{{ $user['id'] }}/verify" method="POST" accept-charset="utf-8">
+			<form action="/admin/clients/{{ $user['id'] }}/verify" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Verify user">
 			</form>
 		</div>
 		@if ($user['is_suspended'] == 0)
 		<div class="col-md-3">
-			<form action="/clients/{{ $user['id'] }}/suspend" method="POST" accept-charset="utf-8">
+			<form action="/admin/clients/{{ $user['id'] }}/suspend" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Suspend">
 			</form>
 		</div>
 		@else
 		<div class="col-md-3">
-			<form action="/clients/{{ $user['id'] }}/reactivate" method="POST" accept-charset="utf-8">
+			<form action="/admin/clients/{{ $user['id'] }}/reactivate" method="POST" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Reactivate">
 			</form>
 		</div>
 		@endif
 		<div class="col-md-3">
-			<form action="/clients/{{ $user['id'] }}/sync" method="POST" accept-charset="utf-8">
+			<form action="/admin/clients/{{ $user['id'] }}/sync" method="POST" accept-charset="utf-8">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input class="btn btn-success" type="submit" value="Sync">
 			</form>

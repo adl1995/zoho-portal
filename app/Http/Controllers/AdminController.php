@@ -190,7 +190,7 @@ class AdminController extends Controller
         $user->is_verified = 1;
         $user->save();
         return redirect()->action(
-            'AdminController@listClientsDetails', ['id' => $id]
+            'AdminController@profile'
         );
     }
 
@@ -205,7 +205,7 @@ class AdminController extends Controller
         $user->is_suspended = 1;
         $user->save();
         return redirect()->action(
-            'AdminController@listClientsDetails', ['id' => $id]
+            'AdminController@profile'
         );
     }
 
@@ -220,7 +220,7 @@ class AdminController extends Controller
         $user->is_suspended = 0;
         $user->save();
         return redirect()->action(
-            'AdminController@listClientsDetails', ['id' => $id]
+            'AdminController@profile'
         );
     }
 

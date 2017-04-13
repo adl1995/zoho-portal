@@ -52,7 +52,17 @@
                       <div class="dropdown-content-body">
                           <ul>
                               <li><a href="/admin/profile"><i class="ti-settings"></i> <span>Profile</span></a></li>
-                              <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
+                              <li>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                   <i class="ti-power-off"></i>
+                                   <span>Logout</span>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                              </li>
                           </ul>
                       </div>
                   </div>

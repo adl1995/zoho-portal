@@ -52,11 +52,11 @@
                                   <a href="#forgot-password" data-toggle="modal">Forgot Password?</a>
                                 </label>
                                 <input name="password" type="password" class="form-control" placeholder="Password">
-								@if ($errors->has('password'))
-								    <span class="help-block">
-								        <strong>{{ $errors->first('password') }}</strong>
-								    </span>
-								@endif
+          								@if ($errors->has('password'))
+          								    <span class="help-block">
+          								        <strong>{{ $errors->first('password') }}</strong>
+          								    </span>
+          								@endif
                               </div>
                               <button type="submit" class="btn btn-primary btn-flat m-b-15">Log in</button>
                             </form>
@@ -196,10 +196,12 @@
                       <h4 class="modal-title">Forgot Password?</h4>
                   </div>
                   <div class="modal-body">
-                    <form>
+                  <!-- TODO: send an AJAX call for password reset -->
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
+                      {{ csrf_field() }}
                       <div class="form-group">
                         <label>Email *</label>
-                        <input type="email" class="form-control" placeholder="Email Address">
+                        <input name="email" type="email" class="form-control" placeholder="Email Address" required autofocus>
                       </div>
                       <button type="submit" class="btn btn-primary btn-flat m-b-5" data-dismiss="modal" href="#password-success" data-toggle="modal">Send Password Reset Link</button>
                     </form>

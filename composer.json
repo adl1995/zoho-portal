@@ -51,10 +51,14 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "post-deploy-cmd": [
+            "chmod -R 755 bootstrap\/cache"
         ]
     },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true
     }
+
 }

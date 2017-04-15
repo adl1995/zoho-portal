@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>KDG Zoho Admin Panel | Log In</title>
     	<!-- ================= Favicon ================== -->
         <link rel="shortcut icon" href="/images/favicon.ico">
@@ -49,7 +50,7 @@
                               <div class="form-group">
                                 <label>Password *</label>
                                 <label class="pull-right">
-                                  <a href="#forgot-password" data-toggle="modal">Forgot Password?</a>
+                                  <a href="#forgot-password-modal" data-toggle="modal">Forgot Password?</a>
                                 </label>
                                 <input name="password" type="password" class="form-control" placeholder="Password">
           								@if ($errors->has('password'))
@@ -188,7 +189,7 @@
     	</div>
 
       <!-- Modal -->
-      <div aria-hidden="true"  role="dialog" tabindex="-1" id="forgot-password" class="modal fade">
+      <div aria-hidden="true"  role="dialog" tabindex="-1" id="forgot-password-modal" class="modal fade">
           <div class="modal-dialog">
               <div class="modal-content text-left">
                   <div class="modal-header">
@@ -197,15 +198,18 @@
                   </div>
                   <div class="modal-body">
                   <!-- TODO: send an AJAX call for password reset -->
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('password.request') }}">
-                      {{ csrf_field() }}
-                      <div class="form-group">
-                        <label>Email *</label>
-                        <input name="email" type="email" class="form-control" placeholder="Email Address" required autofocus>
-                      </div>
-                      <button type="submit" class="btn btn-primary btn-flat m-b-5" data-dismiss="modal" href="#password-success" data-toggle="modal">Send Password Reset Link</button>
-                    </form>
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <input type="hidden" name="token" id="token" value="{{ $token }}">
+                      <label>Email *</label>
+                      <input id="forgot-email" name="email" type="email" class="form-control" required>
+                      <label>Password</label>
+                      <input id="forgot-password-input" type="password" name="password" class="form-control" placeholder="Email Address" required autofocus>
+                      <label>Confirm Password</label>
+                      <input id="forgot-email-password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    </div>
                   </div>
+                <button id="forgot-password" type="submit" class="btn btn-primary btn-flat m-b-5" data-dismiss="modal" href="#password-success" data-toggle="modal">Send Password Reset Link</button>
               </div>
               <!-- /.modal-content -->
           </div>
@@ -236,9 +240,27 @@
       <script src="/js/lib/bootstrap.min.js"></script>
       <!-- bootstrap -->
       <script>
+      // @todo: fix redirection error
         $(function () {
           $('[data-toggle="tooltip"]').tooltip()
         });
+        $("#forgot-password").button().on( "click", function(e) {
+        e.preventDefault();
+        alert($('meta[name="csrf-token"]').attr('content'));
+        $.ajax({ url: '/password/reset',
+          type: 'POST',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          data: { 
+            'email' : $('#forgot-email').val(),
+            'password' : $('#forgot-password-input').val(),
+            'password_confirmation' : $('#forgot-email-password-confirm').val(),
+            'token' : $('#token').val() 
+          },
+          success: function(response) {
+            $( '#table-id' ).load( document.URL + ' #table-id' );
+          }
+        });
+      });
       </script>
     </body>
 </html>

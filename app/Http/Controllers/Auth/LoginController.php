@@ -90,9 +90,10 @@ class LoginController extends Controller
         );
         // @todo: fix tab view
         $tab = 'login';
+        $token = str_random(64);
         \Session::flash('tab', ['login']);
         
-        return view('auth.login', compact('states', 'tab'));
+        return view('auth.login', compact('states', 'tab', 'token'));
     }
 
     /**

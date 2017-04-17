@@ -197,16 +197,11 @@
                       <h4 class="modal-title">Forgot Password?</h4>
                   </div>
                   <div class="modal-body">
-                  <!-- TODO: send an AJAX call for password reset -->
                     {{ csrf_field() }}
                     <div class="form-group">
                       <input type="hidden" name="token" id="token" value="{{ $token }}">
                       <label>Email *</label>
                       <input id="forgot-email" name="email" type="email" class="form-control" required>
-                      <label>Password</label>
-                      <input id="forgot-password-input" type="password" name="password" class="form-control" placeholder="Email Address" required autofocus>
-                      <label>Confirm Password</label>
-                      <input id="forgot-email-password-confirm" type="password" class="form-control" name="password_confirmation" required>
                     </div>
                   </div>
                 <button id="forgot-password" type="submit" class="btn btn-primary btn-flat m-b-5" data-dismiss="modal" href="#password-success" data-toggle="modal">Send Password Reset Link</button>
@@ -240,25 +235,18 @@
       <script src="/js/lib/bootstrap.min.js"></script>
       <!-- bootstrap -->
       <script>
-      // @todo: fix redirection error
         $(function () {
           $('[data-toggle="tooltip"]').tooltip()
         });
         $("#forgot-password").button().on( "click", function(e) {
         e.preventDefault();
-        alert($('meta[name="csrf-token"]').attr('content'));
         $.ajax({ url: '/password/reset',
           type: 'POST',
           beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
           data: { 
             'email' : $('#forgot-email').val(),
-            'password' : $('#forgot-password-input').val(),
-            'password_confirmation' : $('#forgot-email-password-confirm').val(),
             'token' : $('#token').val() 
           },
-          success: function(response) {
-            $( '#table-id' ).load( document.URL + ' #table-id' );
-          }
         });
       });
       </script>

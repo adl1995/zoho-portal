@@ -50,13 +50,14 @@ class ResetPasswordController extends Controller
     public function reset(Request $request)
     {
         $reset_key = str_random(64);
-        // $user = User::where('email', $request->input('email'))->get();
-        $user = User::find(1);
+        $user = User::where('email', $request->input('email'))->get();
+        $user = User::find($user[0]['id']);
 
         Mail::send('emails.reset', ['verify_key' => $reset_key, 'user' => $user], function ($m) use ($user, $request) {
             $m->from('mail@zoho.net', 'Zoho');
-            $m->to('adeelahmad14@hotmail.com', $user->first_name)->subject('Zoho Portal - Reset password');
+            $m->to($user->email, $user->first_name)->subject('Zoho Portal - Reset password');
         });
+
         Session::flash('status', 'Email sent! Please check your email.');
     }
 

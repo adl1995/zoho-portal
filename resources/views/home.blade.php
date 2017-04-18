@@ -18,7 +18,7 @@
                     <button type="submit" class="btn btn-primary btn-flat m-b-15">Submit API Key</button>
                   </form>
                   <div class="register-link text-center">
-						<p>Don't want to enter your API Key now?<a href="#">Log out</a></p>
+						<p>Don't want to enter your API Key now? <a href="#">Log out</a></p>
 				  </div>
                 </div>
  

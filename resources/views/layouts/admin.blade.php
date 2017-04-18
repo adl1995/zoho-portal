@@ -39,7 +39,7 @@
     </div><!-- /# sidebar -->
     <div class="header">
         <div class="pull-left">
-            <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /><span>Zoho Admin Panel</span></a></div>
+            <div class="logo"><a href="/admin"><img src="images/logo.png" alt="" /><span>Zoho Admin Panel</span></a></div>
             <div class="hamburger sidebar-toggle">
                 <span class="line"></span>
                 <span class="line"></span>

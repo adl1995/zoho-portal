@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use App\User;
-use Mail;
+use Validator;
 use Session;
+use Mail;
 
 class ResetPasswordController extends Controller
 {
@@ -66,7 +67,8 @@ class ResetPasswordController extends Controller
      */
     public function showUpdatePassword()
     {
-        return view('auth.passwords.reset');
+        $token = str_random(64);
+        return view('auth.passwords.reset', compact('token'));
     }
 
     /**
@@ -76,6 +78,16 @@ class ResetPasswordController extends Controller
      */
     public function updatePassword(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'password' => array('required','min:6','confirmed','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/'),
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/login')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $user = User::where('email', $request->input('email'))->get();
         $user = User::find($user[0]['id']);
         if (isset($user)) {
@@ -86,5 +98,6 @@ class ResetPasswordController extends Controller
         $user->save();
 
         Session::flash('status', 'Password successfully updated.');
+        return redirect('/login');
     }
 }

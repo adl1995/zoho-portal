@@ -12,8 +12,11 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::post('/user/password/reset', 'Auth\ResetPasswordController@updatePassword');
 Route::resource('home', 'HomeController');
+
+Route::get('/password/reset/{id}', 'Auth\ResetPasswordController@showUpdatePassword');
+Route::post('/user/password/reset', 'Auth\ResetPasswordController@updatePassword');
+
 
 Auth::routes();
 
@@ -26,7 +29,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 		Route::get('/', 'AdminController@index');
 		Route::get('/profile', 'AdminController@profile');
 		Route::get('/errors', 'AdminController@errorLog');
-		Route::get('/password/reset/{id}', 'Auth\ResetPasswordController@showUpdatePassword');
 		Route::get('clients', 'AdminController@currentClient');
 		Route::get('clients/add', 'AdminController@addClient');
 		Route::post('clients/add', 'AdminController@createClient');

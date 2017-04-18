@@ -32,7 +32,6 @@ class ZohoController extends Controller
      * @param : $module, $method
      * @return response
      */
-    
     public function call_zoho_api($module, $method)
     {
         $ch = curl_init();
@@ -52,7 +51,6 @@ class ZohoController extends Controller
      * @param : $module, $method, $record_id, $XML_data
      * @return response
      */
-    
     public function call_zoho_api_add($module, $method, $record_id, $XML_data)
     {
         $url = 'https://crm.zoho.com/crm/private/xml/'.$module.'/'.$method.'?authtoken='.config('app.ZOHO_KEY').'&scope=crmapi&newFormat=1&id='.$record_id.'&xmlData='.$XML_data;
@@ -71,7 +69,6 @@ class ZohoController extends Controller
      * @param : $email
      * @return response
      */
-    
     public function call_email_api($email)
     {
         $ch = curl_init();
@@ -91,7 +88,6 @@ class ZohoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index(Request $request)
     {
         $response = $this->call_zoho_api('Info', 'getModules');

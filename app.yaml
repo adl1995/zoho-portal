@@ -4,12 +4,20 @@ env: flex
 runtime_config:
   document_root: public
 
-# required on some platforms so ".env" is not skipped
-skip_files: false
+skip_files:  
+  - .env
 
 env_variables:
-  # The values here will override those in ".env". This is useful for
-  # production-specific configuration. However, feel free to set these
-  # values in ".env" instead if you prefer.
   APP_LOG: errorlog
+  APP_KEY: base64:BEVs/DqwJFIx+WAhNu/AMgbs3uv4rOyg84kgFgMg81M=
   STORAGE_DIR: /tmp
+  CACHE_DRIVER: database
+  SESSION_DRIVER: database
+  DB_HOST: localhost
+  DB_DATABASE: zoho_portal
+  DB_USERNAME: root
+  DB_PASSWORD: 118097
+  DB_SOCKET: "/cloudsql/zoho-portal-159018:us-central1:zoho-portal"
+
+beta_settings:
+    cloud_sql_instances: "zoho-portal-159018:us-central1:zoho-portal"

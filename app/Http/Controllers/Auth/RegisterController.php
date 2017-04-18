@@ -90,8 +90,6 @@ class RegisterController extends Controller
                         ->withInput()
                         ->with('tab', ['register']);
         }
-
-        // Store the blog post...
     }
 
     /**

@@ -24,7 +24,8 @@
         <div class="nano">
             <div class="nano-content">
                 <ul>
-                    <li class="{{ session('tab')[0] == 'home' ? 'active' : '' }}"><a href="/admin"><i class="ti-user"></i>Home</a></li>
+                    <li class="{{ session('tab')[0] == 'home' ? 'active' : '' }}"><a href="/"><i class="ti-user"></i>Home</a></li>
+                    <li class="{{ session('tab')[0] == 'admin-home' ? 'active' : '' }}"><a href="/admin"><i class="ti-user"></i>Admin Home</a></li>
                     @if (isset(Auth::user()->is_admin))
                         @if (Auth::user()->is_admin == 1)
                           <li class="{{ session('tab')[0] == 'list-clients' ? 'active' : '' }}"><a href="{{ url('/admin/clients') }}"><i class="ti-user"></i>Current Client</a></li>
@@ -39,7 +40,7 @@
     </div><!-- /# sidebar -->
     <div class="header">
         <div class="pull-left">
-            <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" /><span>Zoho Admin Panel</span></a></div>
+            <div class="logo"><a href="/admin"><img src="images/logo.png" alt="" /><span>Zoho Admin Panel</span></a></div>
             <div class="hamburger sidebar-toggle">
                 <span class="line"></span>
                 <span class="line"></span>

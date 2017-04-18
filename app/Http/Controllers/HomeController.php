@@ -53,6 +53,7 @@ class HomeController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        
         $keys = ZohoKey::where('zoho_key', '=', $request->zoho_key)->where('user_id', Auth::user()->id)->get();
         
         if (count($keys) == 0)

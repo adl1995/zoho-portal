@@ -27,7 +27,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        \Session::flash('tab', ['home']);
+        \Session::flash('tab', ['admin-home']);
 
         $users = User::all();
         return view('admin.home', compact('users'));
@@ -225,7 +225,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Suspend a client
+     * Sync client
      *
      * @return void
      */
